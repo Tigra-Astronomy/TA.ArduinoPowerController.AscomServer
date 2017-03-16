@@ -8,8 +8,8 @@
     <ProjectGuid>{3015F05F-D747-4C3E-A0D4-EC2B3BD76C56}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TA.VellemanK8056.DeviceInterface</RootNamespace>
-    <AssemblyName>TA.VellemanK8056.DeviceInterface</AssemblyName>
+    <RootNamespace>TA.ArduinoPowerController.DeviceInterface</RootNamespace>
+    <AssemblyName>TA.ArduinoPowerController.DeviceInterface</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,26 +86,19 @@
     </Compile>
     <Compile Include="CommunicationsStackBuilder.cs" />
     <Compile Include="DeviceController.cs" />
-    <Compile Include="EnergizeRelayTransaction.cs" />
     <Compile Include="ITransactionProcessorFactory.cs" />
-    <Compile Include="NoReplyTransaction.cs" />
-    <Compile Include="Octet.cs" />
+    <Compile Include="ArduinoSwitchTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReactiveTransactionProcessorFactory.cs" />
     <Compile Include="RelayStateChangedEventArgs.cs" />
-    <Compile Include="ReleaseRelayTransaction.cs" />
     <Compile Include="TransactionException.cs" />
+    <Compile Include="WriteRelayTransaction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="..\ArchitectureRules\LocalServerLayers.layerdiagram">
-      <Link>LocalServerLayers.layerdiagram</Link>
-      <Visible>False</Visible>
-    </AdditionalFiles>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
-    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

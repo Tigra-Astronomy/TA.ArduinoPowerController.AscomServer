@@ -1,15 +1,15 @@
-﻿// This file is part of the ASCOM.K8056.Switch project
+﻿// This file is part of the TA.ArduinoPowerController project
 // 
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: DeviceController.cs  Last modified: 2017-03-09@02:59 by Tim Long
+// File: DeviceController.cs  Last modified: 2017-03-16@21:31 by Tim Long
 
 using System;
 using NLog;
 using TA.Ascom.ReactiveCommunications;
 
-namespace TA.VellemanK8056.DeviceInterface
+namespace TA.ArduinoPowerController.DeviceInterface
     {
     public class DeviceController : IDisposable
         {
@@ -34,11 +34,11 @@ namespace TA.VellemanK8056.DeviceInterface
 
         public void ClearRelay(ushort id)
             {
-            var transaction = new ReleaseRelayTransaction(id);
+            var transaction = new WriteRelayTransaction(id, false);
             transactionProcessor.CommitTransaction(transaction);
             transaction.WaitForCompletionOrTimeout();
             RaiseRelayStateChanged(id, false);
-        }
+            }
 
         /// <summary>
         ///     Close the connection to the AWR system. This should never fail.
@@ -106,7 +106,7 @@ namespace TA.VellemanK8056.DeviceInterface
 
         public void SetRelay(ushort id)
             {
-            var transaction = new EnergizeRelayTransaction(id);
+            var transaction = new WriteRelayTransaction(id, true);
             transactionProcessor.CommitTransaction(transaction);
             transaction.WaitForCompletionOrTimeout();
             RaiseRelayStateChanged(id, true);

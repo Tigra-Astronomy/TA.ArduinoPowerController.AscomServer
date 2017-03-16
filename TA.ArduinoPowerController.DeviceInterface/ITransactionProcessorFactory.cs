@@ -1,13 +1,13 @@
-﻿// This file is part of the ASCOM.K8056.Switch project
+﻿// This file is part of the TA.ArduinoPowerController project
 // 
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: ITransactionProcessorFactory.cs  Last modified: 2017-03-07@19:18 by Tim Long
+// File: ITransactionProcessorFactory.cs  Last modified: 2017-03-16@21:31 by Tim Long
 
 using TA.Ascom.ReactiveCommunications;
 
-namespace TA.VellemanK8056.DeviceInterface
+namespace TA.ArduinoPowerController.DeviceInterface
     {
     public interface ITransactionProcessorFactory
         {
