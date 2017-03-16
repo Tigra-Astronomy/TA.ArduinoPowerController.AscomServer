@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Include>
+  <!-- User Configuration - you must ensure all these variables have correct values for your project -->
+  <?define InstallName = "ASCOM Driver for Velleman K8056 Relay Module" ?>
+  <?define Manufacturer = "Tigra Astronomy" ?>
+  <?define InstallDirectory = "$(var.InstallName)" ?>
+  <?define LocalServerAppId = "{11f49188-8a51-4a55-a96f-fff4cd595be8}" ?>
+  <?define CopyrightNotice="Copyright © 2017 Tigra Astronomy, all rights reserved" ?>
+  <?define SwitchDriverClassId="{A864F06E-B5CC-4566-BCBF-59FAC56E6DDB}" ?>
+  <?define SwitchDriverProgId="ASCOM.K8056.Switch" ?>
+  <?define SwitchDriverDescription="Velleman K8056 Relay Module" ?>
+  <!-- End of User Configuration - do not edit anything beyond this point -->
+
+  <!-- Define platform-specific names and locations -->
+  <?if $(var.Platform) = x64 ?>
+  <?define ProductName = "$(var.InstallName) (x64)" ?>
+  <?define Win64 = "yes" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+  <?define PlatformCommonFilesFolder = "CommonFiles64Folder" ?>
+  <?else ?>
+  <?define ProductName = "$(var.InstallName) (x86)" ?>
+  <?define Win64 = "no" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+  <?define PlatformCommonFilesFolder = "CommonFilesFolder" ?>
+  <?endif ?>
+
+  <!-- Set installer version based on the file version of the main assembly. -->
+  <?define ProductVersion="!(bind.FileVersion.filLocalServerAssembly)"?>
+</Include>

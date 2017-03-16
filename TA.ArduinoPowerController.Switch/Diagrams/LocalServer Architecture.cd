@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ASCOM.K8056.Switch" Collapsed="true">
+    <Position X="0.75" Y="2.25" Width="2.25" />
+    <AssociationLine Name="device" Type="TA.VellemanK8056.DeviceInterface.DeviceController">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.133" Y="0.177" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAYBgBACoCAwQEIEHAAECIQAgACIAAIA0AIIAAApAAY=</HashCode>
+      <FileName>Switch.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="device" />
+    </ShowAsAssociation>
+    <Lollipop Position="1.669" />
+  </Class>
+  <Class Name="TA.VellemanK8056.Server.ReferenceCountedObjectBase" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TA.VellemanK8056.DeviceInterface.DeviceController" Collapsed="true">
+    <Position X="1" Y="4" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="1.182" />
+  </Class>
+  <Class Name="TA.VellemanK8056.Server.SharedResources" Collapsed="true">
+    <Position X="8.75" Y="0.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="ConnectionManager" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TA.VellemanK8056.Server.ClientConnectionManager" Collapsed="true">
+    <Position X="4.75" Y="0.75" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TA.VellemanK8056.Server.Server" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TA.VellemanK8056.Server.ServerStatusDisplay" Collapsed="true">
+    <Position X="8.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TA.VellemanK8056.Server.SetupDialogForm" Collapsed="true">
+    <Position X="8.75" Y="3.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TA.VellemanK8056.Server.AboutBox" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(sys.CURRENTDIR)\Config.wxi?>
+  
+  <!--
+  Defines the ASCOM custom actions and schedules them for execution at the appropriate times.
+  You must reference each of these custom actions with a <CustomActionRef/> from within your <Product/> element.
+  Do not change anything in this file, or things will break.
+  -->
+
+  <Fragment>
+    <Binary Id="AscomCustomActions"
+            SourceFile="..\packages\TA.Ascom.WixCustomActions.0.1.0-Beta15\lib\net40\TA.Ascom.WixCustomActions.CA.dll" />
+    <CustomAction Id="caPrepareAscomDeviceProfiles"
+                  BinaryKey="AscomCustomActions" 
+                  DllEntry="EnumerateAscomDeviceProfiles"
+                  Execute="immediate"
+                  Return="check" />
+    <CustomAction Id="caRegisterDrivers"
+                  BinaryKey="AscomCustomActions"
+                  DllEntry="RegisterAscomDeviceProfiles"
+                  Execute="deferred" 
+                  Return="check" />
+    <CustomAction Id="caUnregisterDrivers" 
+                  BinaryKey="AscomCustomActions" 
+                  DllEntry="UnregisterAscomDeviceProfiles"
+                  Execute="deferred"
+                  Return="ignore" />
+    <InstallExecuteSequence>
+      <Custom Action="caPrepareAscomDeviceProfiles" Before="InstallInitialize" />
+      <Custom Action="caUnregisterDrivers" After="RemoveFiles">Installed OR MaintenanceMode="Modify" OR UPGRADINGPRODUCTCODE</Custom>
+      <Custom Action="caRegisterDrivers" Before="InstallFiles">NOT REMOVE OR Installed</Custom>
+    </InstallExecuteSequence>
+    
+    <CustomTable Id="AscomDeviceProfiles" >
+      <Column Id="Id" Category="Identifier" PrimaryKey="yes" Type="int" Width="4"
+              Description="Unique row ID" />
+      <Column Id="DriverId" Category="Text" Type="string" PrimaryKey="no" />
+      <Column Id="ChooserName" Category="Text" Type="string" PrimaryKey="no"
+              Description="The name that will appear in the ASCOM Chooser" />
+
+      <Row>
+        <Data Column="Id" >1</Data>
+        <Data Column="DriverId" >$(var.SwitchDriverProgId)</Data>
+        <Data Column="ChooserName" >$(var.SwitchDriverDescription)</Data>
+      </Row>
+    </CustomTable>
+
+  </Fragment>
+</Wix>

@@ -1,0 +1,28 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ASCOM.K8056.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1:2400,None,8,One,NoDTR,NoRTS</Value>
+    </Setting>
+    <Setting Name="MinimumMillisecondsBetweenTransactions" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="SwitchNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Relay 0&lt;/string&gt;
+  &lt;string&gt;Relay 1&lt;/string&gt;
+  &lt;string&gt;Relay 2&lt;/string&gt;
+  &lt;string&gt;Relay 3&lt;/string&gt;
+  &lt;string&gt;Relay 4&lt;/string&gt;
+  &lt;string&gt;Relay 5&lt;/string&gt;
+  &lt;string&gt;Relay 6&lt;/string&gt;
+  &lt;string&gt;Relay 7&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="PortName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

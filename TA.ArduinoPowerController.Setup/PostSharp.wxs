@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgPostSharp" Directory="INSTALLDIRECTORY" >
+      <Component Id="cmpPostSharp"  Guid="*" Win64="no">
+        <File Id="filPostSharp" 
+              Source="$(var.Server.TargetDir)PostSharp.dll" 
+              Vital="yes" 
+              KeyPath="yes" />
+      </Component>
+      <Component Id="cmpPostSharpPatternsCommon" Guid="*" Win64="no">
+        <File Id="filPostSharpPatternsCommon"     
+              Source="$(var.Server.TargetDir)PostSharp.Patterns.Common.dll"                         
+              Vital="yes" 
+              KeyPath="yes" />
+      </Component>
+      <Component Id="cmpPostSharpPatternsThreading"  Guid="*" Win64="no">
+        <File Id="filPostSharpPatternsThreading"     
+              Source="$(var.Server.TargetDir)PostSharp.Patterns.Threading.dll"                         
+              Vital="yes" 
+              KeyPath="yes" />
+      </Component>
+      <Component Id="cmpPostSharpPatternsModel"  Guid="*" Win64="no">
+        <File Id="filPostSharpPatternsModel"     
+              Source="$(var.Server.TargetDir)PostSharp.Patterns.Model.dll"                         
+              Vital="yes" 
+              KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

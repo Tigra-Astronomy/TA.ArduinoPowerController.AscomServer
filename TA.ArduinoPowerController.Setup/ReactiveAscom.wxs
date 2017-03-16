@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgReactiveAscom" >
+      <Component Id="cmpReactiveAscom" 
+                 Directory="INSTALLDIRECTORY" 
+                 Guid="*"
+                 Win64="no" >
+        <File Id="filReactiveAscom" 
+              Source="$(var.Server.TargetDir)TA.Ascom.ReactiveCommunications.dll" 
+              KeyPath="yes" 
+              Vital="yes" />
+      </Component>
+      <ComponentGroupRef Id="cgReactiveExtensions"/>
+      <ComponentGroupRef Id="cgNLog"/>
+      <ComponentGroupRef Id="cgPostSharp"/>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(sys.CURRENTDIR)\Config.wxi?>
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgAscomLocalServer" Directory="INSTALLDIRECTORY">
+      <ComponentGroupRef Id="cgNLog"/>
+      <ComponentGroupRef Id="cgDeviceLayer"/>
+      <ComponentGroupRef Id="cgReactiveExtensions"/>
+      <Component Id="cmpAscomLocalServer" Guid="*" Win64="no">
+        <File Id="filLocalServerAssembly"
+              Source="$(var.Server.TargetPath)"
+              KeyPath="yes"
+              Vital="yes"
+              Assembly=".net"
+              AssemblyApplication="filLocalServerAssembly" />
+      </Component>
+      <Component Id="cmpLocalServerRegistry" Win64="no">
+        <!-- LocalServer32 COM Registration -->
+        <RegistryKey Root="HKCR" Key="AppID" >
+          <!-- HKCR\AppID\{my-app-id} -->
+          <RegistryKey Key="$(var.LocalServerAppId)">
+            <RegistryValue Value="$(var.InstallName)" Type="string"/>
+            <RegistryValue Name="AppID" Value="$(var.LocalServerAppId)" Type="string"/>
+            <RegistryValue Name="AuthenticationLevel" Value="1" Type="integer"/>
+          </RegistryKey>
+          <!-- HKCR\AppID\{exe-name} -->
+          <RegistryKey Key="$(var.Server.TargetFileName)">
+            <RegistryValue Name="AppID" Value="$(var.LocalServerAppId)" Type="string"/>
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

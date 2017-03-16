@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(sys.CURRENTDIR)\Config.wxi?>
+	<Fragment>
+	  <Directory Id="TARGETDIR" Name="SourceDir">
+	    <Directory Id="ProgramFilesFolder">
+	      <Directory Id="dirManufacturer" Name="$(var.Manufacturer)">
+          <Directory Id="INSTALLDIRECTORY" Name="$(var.InstallName)"/>
+        </Directory>
+	    </Directory>
+	  </Directory>
+	</Fragment>
+</Wix>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(sys.CURRENTDIR)\Config.wxi?>
+  <!--
+    ASCOM Focuser Driver with COM registry entries suitable for a LocalServer Served Class
+  -->
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY" />
+    <CustomActionRef Id="caPrepareAscomDeviceProfiles"/>
+    <CustomActionRef Id="caUnregisterDrivers"/>
+    <CustomActionRef Id="caRegisterDrivers"/>
+    <ComponentGroup Id="cgAscomSwitchDriver">
+      <ComponentGroupRef Id="cgDeviceLayer"/>
+      <ComponentGroupRef Id="cgNLog"/>
+      <ComponentGroupRef Id="cgPostSharp"/>
+      <ComponentGroupRef Id="cgPostSharpAspects" />
+      <ComponentGroupRef Id="cgAscomLocalServer" />
+      <Component Id="cmpAscomSwitchDriver" 
+                 Directory="INSTALLDIRECTORY" 
+                 Guid="*" 
+                 Win64="no">
+        <File Id="filSwitchDriverAssembly" 
+              Source="$(var.SwitchDriver.TargetPath)" 
+              KeyPath="yes"
+              Vital="yes" 
+              Assembly=".net"
+              AssemblyApplication="filSwitchDriverAssembly" />
+        <!-- Registry entries suitable for a LocalServer served class -->
+        <!-- HKCR\CLSID\{driver-guid} -->
+        <RegistryKey Root="HKCR" Key="CLSID">
+          <RegistryKey Key="$(var.SwitchDriverClassId)">
+            <RegistryValue Value="$(var.SwitchDriverProgId)" Type="string"/>
+            <RegistryValue Name="AppId" Value="$(var.LocalServerAppId)" Type="string"/>
+            <RegistryKey Key="Implemented Categories">
+              <RegistryKey Key="{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" 
+                           ForceCreateOnInstall="yes"
+                           ForceDeleteOnUninstall="yes"/>
+            </RegistryKey>
+            <RegistryKey Key="ProgId">
+              <RegistryValue Value="$(var.SwitchDriverProgId)" Type="string"/>
+            </RegistryKey>
+            <RegistryKey Key="Programmable" 
+                         ForceCreateOnInstall="yes"
+                         ForceDeleteOnUninstall="yes" />
+            <RegistryKey Key="LocalServer32">
+              <RegistryValue Value="[#filLocalServerAssembly]" Type="string"/>
+            </RegistryKey>
+          </RegistryKey>
+        </RegistryKey>
+        
+        <!-- HKCR\{driver-prog-id} -->
+        <RegistryKey Root="HKCR" Key="$(var.SwitchDriverProgId)">
+          <RegistryValue Value="$(var.SwitchDriverDescription)" Type="string"/>
+          <RegistryKey Key="CLSID">
+            <RegistryValue Value="$(var.SwitchDriverClassId)" Type="string" />
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

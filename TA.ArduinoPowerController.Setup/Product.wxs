@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(sys.CURRENTDIR)\Config.wxi?>
+  <Product Id="*" 
+           Name="$(var.InstallName)" 
+           Language="1033" Version="$(var.ProductVersion)" 
+           Manufacturer="$(var.Manufacturer)" 
+           UpgradeCode="{54d84bce-4293-49ae-86b5-3e89ee9ab455}">
+		<Package InstallerVersion="400" Compressed="yes" InstallScope="perMachine" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+    <FeatureGroupRef Id="fgRoot"/>
+
+    <!-- Launch Condition to check that x64 installer is used on x64 systems and x86 installer on x86 systems -->
+    <!-- Credit to Yan Sklyarenko via Stack Overflow for suggesting this format       -->
+    <Condition Message="Please use the correct installer for your operating system - x86 for 32-bit, x64 for 64-bit.">
+      <?if $(var.Win64) = "yes" ?>
+      VersionNT64
+      <?else?>
+      NOT VersionNT64
+      <?endif?>
+    </Condition>
+  </Product>
+</Wix>

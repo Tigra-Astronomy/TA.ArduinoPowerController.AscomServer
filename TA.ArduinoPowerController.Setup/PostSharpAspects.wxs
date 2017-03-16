@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgPostSharpAspects" Directory="INSTALLDIRECTORY">
+      <ComponentGroupRef Id="cgPostSharp"/>
+      <ComponentGroupRef Id="cgNLog" />
+      <Component Id="cmpPostSharpAspects" Guid="*" Win64="no">
+        <File Id="filPostSharpAspectsAssembly"
+              Source="$(var.Aspects.TargetPath)"
+              KeyPath="yes"
+              Vital="yes"
+              Assembly=".net"
+              AssemblyApplication="filPostSharpAspectsAssembly" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

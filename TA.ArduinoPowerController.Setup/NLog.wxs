@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgNLog">
+      <Component Id="cmpNLog" Directory="INSTALLDIRECTORY" Guid="*" Win64="no">
+        <File Id="filNLogDll" Source="$(var.Server.TargetDir)NLog.dll" Vital="yes"
+              KeyPath="yes" />
+        <!-- Configuration files, non-vital as the product will work without them -->
+        <File Id="filNLogConfig" Source="$(var.Server.TargetDir)NLog.config" Vital="no" />
+        <File Id="filNLogDllConfig" Source="$(var.SwitchDriver.TargetDir)NLog.dll.nlog" Vital="no" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

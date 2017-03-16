@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgDeviceLayer" Directory="INSTALLDIRECTORY">
+      <ComponentGroupRef Id="cgPostSharp"/>
+      <ComponentGroupRef Id="cgReactiveAscom" />
+      <ComponentGroupRef Id="cgPostSharpAspects" />
+      <ComponentGroupRef Id="cgNLog" />
+      <Component Id="cmpDeviceControlLayer" Guid="*" Win64="no">
+        <File Id="filDeviceLayerAssembly"
+              Source="$(var.DeviceLayer.TargetPath)"
+              KeyPath="yes"
+              Vital="yes"
+              Assembly=".net"
+              AssemblyApplication="filDeviceLayerAssembly" />
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>
