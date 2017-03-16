@@ -1,4 +1,4 @@
-namespace TA.VellemanK8056.Server
+namespace TA.ArduinoPowerController.Server
 {
     partial class SetupDialogForm
     {
@@ -67,7 +67,7 @@ namespace TA.VellemanK8056.Server
             // 
             this.picASCOM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picASCOM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picASCOM.Image = global::TA.VellemanK8056.Server.Properties.Resources.ASCOM;
+            this.picASCOM.Image = global::TA.ArduinoPowerController.Server.Properties.Resources.ASCOM;
             this.picASCOM.Location = new System.Drawing.Point(292, 9);
             this.picASCOM.Name = "picASCOM";
             this.picASCOM.Size = new System.Drawing.Size(48, 56);
@@ -113,9 +113,9 @@ namespace TA.VellemanK8056.Server
             this.Controls.Add(this.picASCOM);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::TA.VellemanK8056.Server.Properties.Settings.Default, "SetupDialogLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::TA.ArduinoPowerController.Server.Properties.Settings.Default, "SetupDialogLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Location = global::TA.VellemanK8056.Server.Properties.Settings.Default.SetupDialogLocation;
+            this.Location = global::TA.ArduinoPowerController.Server.Properties.Settings.Default.SetupDialogLocation;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SetupDialogForm";

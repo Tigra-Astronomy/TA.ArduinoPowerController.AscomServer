@@ -1,8 +1,9 @@
-﻿// This file is part of the GTD.Integra.FocusingRotator project
+﻿// This file is part of the TA.ArduinoPowerController project
 // 
-// Copyright © 2016-2017 Tigra Astronomy., all rights reserved.
+// Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
+// Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: MustBeConnectedAttribute.cs  Last modified: 2017-02-13@01:17 by Tim Long
+// File: MustBeConnectedAttribute.cs  Last modified: 2017-03-16@23:34 by Tim Long
 
 using System;
 using System.Reflection;
@@ -22,7 +23,7 @@ namespace TA.PostSharp.Aspects
     [ProvideAspectRole("ASCOM")]
     public sealed class MustBeConnectedAttribute : OnMethodBoundaryAspect
         {
-        static int nesting;
+        private static int nesting;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="MustBeConnectedAttribute" /> class. Forces

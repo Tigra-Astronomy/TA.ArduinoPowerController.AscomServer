@@ -3,10 +3,9 @@
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: GlobalAssemblyInfo.cs  Last modified: 2017-03-16@21:31 by Tim Long
+// File: GlobalAssemblyInfo.cs  Last modified: 2017-03-16@23:33 by Tim Long
 
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Global assembly attributes shared by all projects

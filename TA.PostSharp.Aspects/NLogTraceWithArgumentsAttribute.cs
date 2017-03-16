@@ -1,8 +1,9 @@
-﻿// This file is part of the TI.DigitalDomeWorks project
+﻿// This file is part of the TA.ArduinoPowerController project
 // 
-// Copyright © 2015-2016 Tigra Networks., all rights reserved.
+// Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
+// Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: NLogTraceWithArgumentsAttribute.cs  Last modified: 2016-09-13@00:23 by Tim Long
+// File: NLogTraceWithArgumentsAttribute.cs  Last modified: 2017-03-16@23:34 by Tim Long
 
 using System;
 using System.Reflection;
@@ -24,6 +25,7 @@ namespace TA.PostSharp.Aspects
         AttributeTargets.Property | AttributeTargets.Struct)]
     [ProvideAspectRole("Trace")]
     [AspectRoleDependency(AspectDependencyAction.Order, AspectDependencyPosition.Before, "ASCOM")]
+    [AspectRoleDependency(AspectDependencyAction.Order, AspectDependencyPosition.After, "Threading")]
     public sealed class NLogTraceWithArgumentsAttribute : OnMethodBoundaryAspect
         {
         private static readonly Type MyType = typeof(NLogTraceWithArgumentsAttribute);
@@ -65,36 +67,6 @@ namespace TA.PostSharp.Aspects
                 }
             }
 
-        /// <summary>
-        ///     Initializes the current aspect. Invoked only once at runtime from the static constructor of type declaring
-        ///     the target method.
-        /// </summary>
-        /// <param name="method">Method to which the current aspect is applied.</param>
-        public override void RuntimeInitialize(MethodBase method)
-            {
-            if (method.DeclaringType != null) loggerName = method.DeclaringType.FullName;
-            var methodName = method.Name;
-            enteringMessage = "Enter " + methodName + '(';
-            exitingMessage = "Exit " + methodName + "()";
-            log = LogManager.GetLogger(loggerName);
-            }
-
-        /// <summary>
-        ///     Method executed <b>before</b> the body of methods to which this aspect is applied.
-        /// </summary>
-        /// <param name="args">
-        ///     Event arguments specifying which method
-        ///     is being executed, which are its arguments, and how should the execution continue
-        ///     after the execution of
-        ///     <see cref="M:PostSharp.Aspects.IOnMethodBoundaryAspect.OnEntry(PostSharp.Aspects.MethodExecutionArgs)" />.
-        /// </param>
-        public override void OnEntry(MethodExecutionArgs args)
-            {
-            base.OnEntry(args);
-            var useIndent = Interlocked.Increment(ref indent);
-            LogMethodEntryWithParameters(args, useIndent);
-            }
-
         private void LogMethodEntryWithParameters(MethodExecutionArgs args, int indent = 0)
             {
             var builder = new StringBuilder();
@@ -119,6 +91,46 @@ namespace TA.PostSharp.Aspects
             LogWithUnwoundStack(builder.ToString());
             }
 
+        private void LogMethodExit(MethodExecutionArgs args, int indent = 0)
+            {
+            var builder = new StringBuilder();
+            if (indent < 0) indent = 0;
+            builder.Append(' ', indent);
+            builder.Append(exitingMessage);
+            if (args.ReturnValue != null)
+                {
+                builder.Append(" == ");
+                builder.Append(args.ReturnValue);
+                }
+            LogWithUnwoundStack(builder.ToString());
+            }
+
+        /// <summary>
+        ///     Sends output to NLog while correctly preserving the call site of the original logging event.
+        /// </summary>
+        /// <param name="message">The verbatim message to be logged.</param>
+        private void LogWithUnwoundStack(string message)
+            {
+            var logEvent = new LogEventInfo(LogAtLevel, loggerName, message);
+            log.Log(MyType, logEvent);
+            }
+
+        /// <summary>
+        ///     Method executed <b>before</b> the body of methods to which this aspect is applied.
+        /// </summary>
+        /// <param name="args">
+        ///     Event arguments specifying which method
+        ///     is being executed, which are its arguments, and how should the execution continue
+        ///     after the execution of
+        ///     <see cref="M:PostSharp.Aspects.IOnMethodBoundaryAspect.OnEntry(PostSharp.Aspects.MethodExecutionArgs)" />.
+        /// </param>
+        public override void OnEntry(MethodExecutionArgs args)
+            {
+            base.OnEntry(args);
+            var useIndent = Interlocked.Increment(ref indent);
+            LogMethodEntryWithParameters(args, useIndent);
+            }
+
         /// <summary>
         ///     Method executed <b>after</b> the body of methods to which this aspect is applied,
         ///     even when the method exists with an exception (this method is invoked from
@@ -136,27 +148,17 @@ namespace TA.PostSharp.Aspects
             }
 
         /// <summary>
-        ///     Sends output to NLog while correctly preserving the call site of the original logging event.
+        ///     Initializes the current aspect. Invoked only once at runtime from the static constructor of type declaring
+        ///     the target method.
         /// </summary>
-        /// <param name="message">The verbatim message to be logged.</param>
-        private void LogWithUnwoundStack(string message)
+        /// <param name="method">Method to which the current aspect is applied.</param>
+        public override void RuntimeInitialize(MethodBase method)
             {
-            var logEvent = new LogEventInfo(LogAtLevel, loggerName, message);
-            log.Log(MyType, logEvent);
-            }
-
-        private void LogMethodExit(MethodExecutionArgs args, int indent = 0)
-            {
-            var builder = new StringBuilder();
-            if (indent < 0) indent = 0;
-            builder.Append(' ', indent);
-            builder.Append(exitingMessage);
-            if (args.ReturnValue != null)
-                {
-                builder.Append(" == ");
-                builder.Append(args.ReturnValue);
-                }
-            LogWithUnwoundStack(builder.ToString());
+            if (method.DeclaringType != null) loggerName = method.DeclaringType.FullName;
+            var methodName = method.Name;
+            enteringMessage = "Enter " + methodName + '(';
+            exitingMessage = "Exit " + methodName + "()";
+            log = LogManager.GetLogger(loggerName);
             }
         }
     }

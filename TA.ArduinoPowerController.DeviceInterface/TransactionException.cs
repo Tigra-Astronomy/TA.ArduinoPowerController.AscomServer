@@ -3,10 +3,9 @@
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: TransactionException.cs  Last modified: 2017-03-16@21:31 by Tim Long
+// File: TransactionException.cs  Last modified: 2017-03-16@23:33 by Tim Long
 
 using System;
-using System.Runtime.Serialization;
 using TA.Ascom.ReactiveCommunications;
 
 namespace TA.ArduinoPowerController.DeviceInterface

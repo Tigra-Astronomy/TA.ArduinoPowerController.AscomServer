@@ -1,4 +1,4 @@
-﻿namespace TA.VellemanK8056.Server
+﻿namespace TA.ArduinoPowerController.Server
 {
     partial class AboutBox
     {
@@ -65,7 +65,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox3.Image = global::TA.VellemanK8056.Server.Properties.Resources.TigraAstronomyLogo;
+            this.pictureBox3.Image = global::TA.ArduinoPowerController.Server.Properties.Resources.TigraAstronomyLogo;
             this.pictureBox3.Location = new System.Drawing.Point(324, 350);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(200, 200);

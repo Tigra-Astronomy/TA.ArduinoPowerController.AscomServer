@@ -1,9 +1,9 @@
-// This file is part of the ASCOM.K8056.Switch project
+// This file is part of the TA.ArduinoPowerController project
 // 
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: ServerStatusDisplay.cs  Last modified: 2017-03-07@22:20 by Tim Long
+// File: ServerStatusDisplay.cs  Last modified: 2017-03-16@23:34 by Tim Long
 
 using System;
 using System.Collections.Generic;
@@ -14,18 +14,18 @@ using System.Threading;
 using System.Windows.Forms;
 using ASCOM.Controls;
 using NLog;
+using TA.ArduinoPowerController.DeviceInterface;
+using TA.ArduinoPowerController.Server.Properties;
 using TA.Ascom.ReactiveCommunications.Diagnostics;
-using TA.VellemanK8056.DeviceInterface;
-using TA.VellemanK8056.Server.Properties;
 
-namespace TA.VellemanK8056.Server
+namespace TA.ArduinoPowerController.Server
     {
     public partial class ServerStatusDisplay : Form
         {
+        private readonly ILogger log = LogManager.GetCurrentClassLogger();
+        private List<Annunciator> annunciators;
         private IDisposable clientStatusSubscription;
         private IDisposable relayStateChangedSubscription;
-        private List<Annunciator> annunciators;
-        private readonly ILogger log = LogManager.GetCurrentClassLogger();
 
         public ServerStatusDisplay()
             {
@@ -153,7 +153,16 @@ namespace TA.VellemanK8056.Server
                 .Subscribe(UpdateRelayAnnunciator);
             }
 
-        void UpdateRelayAnnunciator(RelayStateChangedEventArgs args)
+        /// <summary>
+        ///     Stops observing the controller property change notifications.
+        /// </summary>
+        private void UnsubscribePropertyChangeNotifications()
+            {
+            // Dispose any observable subscriptions
+            relayStateChangedSubscription?.Dispose();
+            }
+
+        private void UpdateRelayAnnunciator(RelayStateChangedEventArgs args)
             {
             log.Info($"Relay {args.RelayNumber} changed to {args.NewState}");
             if (annunciators == null || annunciators.Count == 0)
@@ -163,15 +172,6 @@ namespace TA.VellemanK8056.Server
                 }
             var annunciator = annunciators[args.RelayNumber];
             annunciator.Enabled = args.NewState;
-            }
-
-        /// <summary>
-        ///     Stops observing the controller property change notifications.
-        /// </summary>
-        private void UnsubscribePropertyChangeNotifications()
-            {
-            // Dispose any observable subscriptions
-            relayStateChangedSubscription?.Dispose();
             }
         }
     }

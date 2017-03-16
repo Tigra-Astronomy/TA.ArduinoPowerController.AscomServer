@@ -1,17 +1,18 @@
-﻿// This file is part of the GTD.Integra.FocusingRotator project
+﻿// This file is part of the TA.ArduinoPowerController project
 // 
-// Copyright © 2016-2017 Tigra Astronomy., all rights reserved.
+// Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
+// Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: AppDomainIsolated.cs  Last modified: 2017-02-18@20:49 by Tim Long
+// File: AppDomainIsolated.cs  Last modified: 2017-03-16@23:33 by Tim Long
 
 using System;
 
-namespace TA.VellemanK8056.Server
+namespace TA.ArduinoPowerController.Server
     {
     internal class AppDomainIsolated<TWorker> : IDisposable
         where TWorker : MarshalByRefObject
         {
-        AppDomain domain;
+        private AppDomain domain;
 
         public AppDomainIsolated()
             {

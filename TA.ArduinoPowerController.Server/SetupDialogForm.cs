@@ -1,9 +1,9 @@
-// This file is part of the ASCOM.K8056.Switch project
+// This file is part of the TA.ArduinoPowerController project
 // 
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: SetupDialogForm.cs  Last modified: 2017-03-08@15:47 by Tim Long
+// File: SetupDialogForm.cs  Last modified: 2017-03-16@23:34 by Tim Long
 
 using System;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace TA.VellemanK8056.Server
+namespace TA.ArduinoPowerController.Server
     {
     [ComVisible(false)] // Form not registered for COM!
     public partial class SetupDialogForm : Form

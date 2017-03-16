@@ -1,9 +1,9 @@
-﻿// This file is part of the ASCOM.K8056.Switch project
+﻿// This file is part of the TA.ArduinoPowerController project
 // 
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: ClientConnectionManager.cs  Last modified: 2017-03-08@15:40 by Tim Long
+// File: ClientConnectionManager.cs  Last modified: 2017-03-16@23:33 by Tim Long
 
 using System;
 using System.Collections.Generic;
@@ -12,17 +12,18 @@ using JetBrains.Annotations;
 using NLog;
 using PostSharp.Patterns.Model;
 using PostSharp.Patterns.Threading;
+using TA.ArduinoPowerController.DeviceInterface;
 using TA.Ascom.ReactiveCommunications;
 using TA.PostSharp.Aspects;
-using TA.VellemanK8056.DeviceInterface;
 
-namespace TA.VellemanK8056.Server
+namespace TA.ArduinoPowerController.Server
     {
     /// <summary>
     ///     Manages client (driver) connections to the shared device controller. Uses the Reader
     ///     Writer Lock pattern to ensure thread safety.
     /// </summary>
-    [ReaderWriterSynchronized][NLogTraceWithArguments()]
+    [ReaderWriterSynchronized]
+    [NLogTraceWithArguments]
     public class ClientConnectionManager
         {
         [Reference] private readonly ILogger log = LogManager.GetCurrentClassLogger();

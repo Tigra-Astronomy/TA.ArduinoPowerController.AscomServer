@@ -1,4 +1,4 @@
-﻿namespace TA.VellemanK8056.Server
+﻿namespace TA.ArduinoPowerController.Server
 {
     partial class CommunicationSettingsControl
     {
@@ -53,13 +53,13 @@
             // 
             // CommPortName
             // 
-            this.CommPortName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TA.VellemanK8056.Server.Properties.Settings.Default, "CommPortName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.CommPortName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::TA.ArduinoPowerController.Server.Properties.Settings.Default, "CommPortName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.CommPortName.FormattingEnabled = true;
             this.CommPortName.Location = new System.Drawing.Point(73, 0);
             this.CommPortName.Name = "CommPortName";
             this.CommPortName.Size = new System.Drawing.Size(80, 21);
             this.CommPortName.TabIndex = 0;
-            this.CommPortName.Text = global::TA.VellemanK8056.Server.Properties.Settings.Default.CommPortName;
+            this.CommPortName.Text = global::TA.ArduinoPowerController.Server.Properties.Settings.Default.CommPortName;
             // 
             // CommunicationSettingsControl
             // 

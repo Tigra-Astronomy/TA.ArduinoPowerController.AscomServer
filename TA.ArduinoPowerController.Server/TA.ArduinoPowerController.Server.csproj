@@ -9,8 +9,8 @@
     <ProjectGuid>{3689A2CB-94C5-4012-A5CF-7E7D1DD27143}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TA.VellemanK8056.Server</RootNamespace>
-    <AssemblyName>TA.VellemanK8056.Server</AssemblyName>
+    <RootNamespace>TA.ArduinoPowerController.Server</RootNamespace>
+    <AssemblyName>TA.ArduinoPowerController.Server</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -277,18 +277,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TA.PostSharp.Aspects\TA.PostSharp.Aspects.csproj">
-      <Project>{9CDCF319-DADC-41EB-B787-DE3862017E95}</Project>
-      <Name>TA.PostSharp.Aspects</Name>
+    <ProjectReference Include="..\TA.ArduinoPowerController.DeviceInterface\TA.ArduinoPowerController.DeviceInterface.csproj">
+      <Project>{3015f05f-d747-4c3e-a0d4-ec2b3bd76c56}</Project>
+      <Name>TA.ArduinoPowerController.DeviceInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TA.VellemanK8056.DeviceInterface\TA.VellemanK8056.DeviceInterface.csproj">
-      <Project>{3015F05F-D747-4C3E-A0D4-EC2B3BD76C56}</Project>
-      <Name>TA.VellemanK8056.DeviceInterface</Name>
+    <ProjectReference Include="..\TA.PostSharp.Aspects\TA.PostSharp.Aspects.csproj">
+      <Project>{9cdcf319-dadc-41eb-b787-de3862017e95}</Project>
+      <Name>TA.PostSharp.Aspects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
-    <Analyzer Include="..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

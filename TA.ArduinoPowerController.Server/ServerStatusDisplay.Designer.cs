@@ -1,4 +1,4 @@
-namespace TA.VellemanK8056.Server
+namespace TA.ArduinoPowerController.Server
 {
     partial class ServerStatusDisplay
     {
@@ -250,9 +250,9 @@ namespace TA.VellemanK8056.Server
             this.Controls.Add(this.label3);
             this.Controls.Add(this.registeredClientCount);
             this.Controls.Add(this.label1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::TA.VellemanK8056.Server.Properties.Settings.Default, "MainFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::TA.ArduinoPowerController.Server.Properties.Settings.Default, "MainFormLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Location = global::TA.VellemanK8056.Server.Properties.Settings.Default.MainFormLocation;
+            this.Location = global::TA.ArduinoPowerController.Server.Properties.Settings.Default.MainFormLocation;
             this.Name = "ServerStatusDisplay";
             this.Text = "Velleman K8056 Relay Module";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
