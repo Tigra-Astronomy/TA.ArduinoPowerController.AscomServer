@@ -32,7 +32,7 @@ namespace TA.ArduinoPowerController.Server
 
         public void Save()
             {
-            Settings.Default.ConnectionString = $"{Settings.Default.CommPortName}:2400";
+            Settings.Default.ConnectionString = $"{Settings.Default.CommPortName}:9600";
             Settings.Default.Save();
             }
         }

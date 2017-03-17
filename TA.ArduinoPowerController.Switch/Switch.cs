@@ -1,42 +1,42 @@
-﻿// This file is part of the ASCOM.K8056.Switch project
+﻿// This file is part of the TA.ArduinoPowerController project
 // 
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: Switch.cs  Last modified: 2017-03-09@14:37 by Tim Long
+// File: Switch.cs  Last modified: 2017-03-17@17:37 by Tim Long
 
 using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Runtime.InteropServices;
+using ASCOM;
 using ASCOM.DeviceInterface;
-using ASCOM.K8056.Properties;
 using JetBrains.Annotations;
 using NLog;
+using TA.ArduinoPowerController.DeviceInterface;
+using TA.ArduinoPowerController.Server;
+using TA.ArduinoPowerController.Server.Properties;
 using TA.PostSharp.Aspects;
-using TA.VellemanK8056.DeviceInterface;
-using TA.VellemanK8056.Server;
+using NotImplementedException = System.NotImplementedException;
 
 #if DEBUG_IN_EXTERNAL_APP
 using System.Windows.Forms;
 
 #endif
 
-namespace ASCOM.K8056
+namespace TA.ArduinoPowerController.AscomSwitch
     {
-    [ProgId(DeviceId)]
+    [ProgId(SharedResources.SwitchDriverId)]
     [Guid("A864F06E-B5CC-4566-BCBF-59FAC56E6DDB")]
     [ComVisible(true)]
     [ClassInterface(ClassInterfaceType.None)]
     [UsedImplicitly]
-    [ServedClassName(DeviceName)]
+    [ServedClassName(SharedResources.SwitchDriverName)]
     [NLogTraceWithArguments]
     public class Switch : ReferenceCountedObjectBase, ISwitchV2, IDisposable, IAscomDriver
         {
-        internal const string DeviceName = "Velleman K8056";
-        internal const string DeviceId = "ASCOM.K8056.Switch";
-        private readonly ILogger log = LogManager.GetCurrentClassLogger();
         private readonly Guid clientId;
+        private readonly ILogger log = LogManager.GetCurrentClassLogger();
         private DeviceController device;
 
         private bool disposed;
@@ -52,7 +52,7 @@ namespace ASCOM.K8056
 #endif
             //HandleAssemblyResolveEvents();
             //device = CompositionRoot.GetDeviceLayer();
-            clientId = SharedResources.ConnectionManager.RegisterClient(DeviceId);
+            clientId = SharedResources.ConnectionManager.RegisterClient(SharedResources.SwitchDriverId);
             }
 
         internal bool IsOnline => device?.IsOnline ?? false;
@@ -60,24 +60,24 @@ namespace ASCOM.K8056
         [MustBeConnected]
         public string Action(string ActionName, string ActionParameters)
             {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
             }
 
         public bool CanWrite(short id) => true;
 
         public void CommandBlind(string Command, bool Raw = false)
             {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
             }
 
         public bool CommandBool(string Command, bool Raw = false)
             {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
             }
 
         public string CommandString(string Command, bool Raw = false)
             {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
             }
 
         /// <summary>
@@ -155,7 +155,7 @@ Licensed under the MIT License: http://tigra.mit-license.org/";
         /// <summary>
         ///     The short name of the driver, for display purposes
         /// </summary>
-        public string Name => DeviceName;
+        public string Name => SharedResources.SwitchDriverName;
 
         [MustBeConnected]
         public void SetSwitch(short id, bool state)

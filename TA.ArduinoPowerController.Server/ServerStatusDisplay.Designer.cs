@@ -34,7 +34,6 @@ namespace TA.ArduinoPowerController.Server
             this.label3 = new System.Windows.Forms.Label();
             this.ClientStatus = new System.Windows.Forms.ListBox();
             this.annunciatorPanel1 = new ASCOM.Controls.AnnunciatorPanel();
-            this.SetupCommand = new System.Windows.Forms.Button();
             this.Relay0Annunciator = new ASCOM.Controls.Annunciator();
             this.Relay1Annunciator = new ASCOM.Controls.Annunciator();
             this.Relay2Annunciator = new ASCOM.Controls.Annunciator();
@@ -43,6 +42,7 @@ namespace TA.ArduinoPowerController.Server
             this.Relay5Annunciator = new ASCOM.Controls.Annunciator();
             this.Relay6Annunciator = new ASCOM.Controls.Annunciator();
             this.Relay7Annunciator = new ASCOM.Controls.Annunciator();
+            this.SetupCommand = new System.Windows.Forms.Button();
             this.annunciatorPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,16 +107,6 @@ namespace TA.ArduinoPowerController.Server
             this.annunciatorPanel1.Name = "annunciatorPanel1";
             this.annunciatorPanel1.Size = new System.Drawing.Size(181, 19);
             this.annunciatorPanel1.TabIndex = 5;
-            // 
-            // SetupCommand
-            // 
-            this.SetupCommand.Location = new System.Drawing.Point(265, 5);
-            this.SetupCommand.Name = "SetupCommand";
-            this.SetupCommand.Size = new System.Drawing.Size(75, 23);
-            this.SetupCommand.TabIndex = 8;
-            this.SetupCommand.Text = "Setup...";
-            this.SetupCommand.UseVisualStyleBackColor = true;
-            this.SetupCommand.Click += new System.EventHandler(this.SetupCommand_Click);
             // 
             // Relay0Annunciator
             // 
@@ -238,6 +228,16 @@ namespace TA.ArduinoPowerController.Server
             this.Relay7Annunciator.TabIndex = 0;
             this.Relay7Annunciator.Text = "7";
             // 
+            // SetupCommand
+            // 
+            this.SetupCommand.Location = new System.Drawing.Point(265, 5);
+            this.SetupCommand.Name = "SetupCommand";
+            this.SetupCommand.Size = new System.Drawing.Size(75, 23);
+            this.SetupCommand.TabIndex = 8;
+            this.SetupCommand.Text = "Setup...";
+            this.SetupCommand.UseVisualStyleBackColor = true;
+            this.SetupCommand.Click += new System.EventHandler(this.SetupCommand_Click);
+            // 
             // ServerStatusDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,7 +254,7 @@ namespace TA.ArduinoPowerController.Server
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Location = global::TA.ArduinoPowerController.Server.Properties.Settings.Default.MainFormLocation;
             this.Name = "ServerStatusDisplay";
-            this.Text = "Velleman K8056 Relay Module";
+            this.Text = "Arduino Power Controller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.LocationChanged += new System.EventHandler(this.frmMain_LocationChanged);

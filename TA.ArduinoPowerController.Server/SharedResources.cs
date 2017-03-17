@@ -27,19 +27,11 @@ namespace TA.ArduinoPowerController.Server
         /// <summary>
         ///     ASCOM DeviceID (COM ProgID) for the rotator driver.
         /// </summary>
-        public const string RotatorDriverId = "ASCOM.Integra85.Rotator";
+        public const string SwitchDriverId = "ASCOM.ArduinoPowerController.Switch";
         /// <summary>
         ///     Driver description for the rotator driver.
         /// </summary>
-        public const string RotatorDriverName = "Gemini Integra 85";
-        /// <summary>
-        ///     ASCOM DeviceID (COM ProgID) for the focuser driver.
-        /// </summary>
-        public const string FocuserDriverId = "ASCOM.Integra85.Focuser";
-        /// <summary>
-        ///     Driver description for the focuser driver.
-        /// </summary>
-        public const string FocuserDriverName = "Gemini Integra 85";
+        public const string SwitchDriverName = "Arduino Power Controller";
 
         private static readonly ILogger Log;
 
@@ -73,9 +65,9 @@ namespace TA.ArduinoPowerController.Server
             {
             var oldConnectionString = Settings.Default.ConnectionString;
             Log.Info($"SetupDialog requested by client {clientId}");
-            using (var F = new SetupDialogForm())
+            using (var dialogForm = new SetupDialogForm())
                 {
-                var result = F.ShowDialog();
+                var result = dialogForm.ShowDialog();
                 switch (result)
                     {
                         case DialogResult.OK:

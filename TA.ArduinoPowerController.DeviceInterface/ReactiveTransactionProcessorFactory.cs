@@ -13,13 +13,15 @@ namespace TA.ArduinoPowerController.DeviceInterface
     {
     public class ReactiveTransactionProcessorFactory : ITransactionProcessorFactory
         {
-        private readonly string connectionString;
+        public string ConnectionString { get; }
+
         private TransactionObserver observer;
         private ReactiveTransactionProcessor processor;
 
         public ReactiveTransactionProcessorFactory(string connectionString)
             {
-            this.connectionString = connectionString;
+            this.ConnectionString = connectionString;
+            // Endpoint will be InvalidEndpoint if the connection string is invalid.
             Endpoint = DeviceEndpoint.FromConnectionString(connectionString);
             }
 
@@ -32,11 +34,11 @@ namespace TA.ArduinoPowerController.DeviceInterface
         /// <returns>ITransactionProcessor.</returns>
         public ITransactionProcessor CreateTransactionProcessor()
             {
-            Endpoint = DeviceEndpoint.FromConnectionString(connectionString);
+            Endpoint = DeviceEndpoint.FromConnectionString(ConnectionString);
             Channel = CommunicationsStackBuilder.BuildChannel(Endpoint);
             observer = new TransactionObserver(Channel);
             processor = new ReactiveTransactionProcessor();
-            processor.SubscribeTransactionObserver(observer, TimeSpan.FromSeconds(2));
+            processor.SubscribeTransactionObserver(observer, TimeSpan.FromMilliseconds(100));
             Channel.Open();
             //Task.Delay(TimeSpan.FromSeconds(2)).Wait(); // Arduino needs 2 seconds to initialize
             Thread.Sleep(TimeSpan.FromSeconds(3));

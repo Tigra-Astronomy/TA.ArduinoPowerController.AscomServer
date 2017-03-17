@@ -49,7 +49,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "2400,n,8,1";
+            this.label2.Text = "9600,n,8,1";
             // 
             // CommPortName
             // 

@@ -21,8 +21,8 @@ namespace TA.ArduinoPowerController.Server.Properties
     //  The SettingsLoaded event is raised after the setting values are loaded.
     //  The SettingsSaving event is raised before the setting values are saved.
     [SettingsProvider(typeof(SettingsProvider))]
-    [DeviceId(SharedResources.RotatorDriverId, DeviceName = SharedResources.RotatorDriverName)]
-    internal sealed partial class Settings
+    [DeviceId(SharedResources.SwitchDriverId, DeviceName = SharedResources.SwitchDriverName)]
+    public sealed partial class Settings
         {
         private readonly ILogger log = LogManager.GetCurrentClassLogger();
 

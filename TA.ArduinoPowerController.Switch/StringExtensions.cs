@@ -1,9 +1,9 @@
-// This file is part of the ASCOM.K8056.Switch project
+// This file is part of the TA.ArduinoPowerController project
 // 
-// Copyright © 2016-2016 Tigra Astronomy, all rights reserved.
+// Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: StringExtensions.cs  Last modified: 2016-07-27@17:32 by Tim Long
+// File: StringExtensions.cs  Last modified: 2017-03-17@17:37 by Tim Long
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 
-namespace ASCOM.K8056
+namespace TA.ArduinoPowerController.AscomSwitch
     {
     public static class StringExtensions
         {
@@ -28,49 +28,86 @@ namespace ASCOM.K8056
 
         private static readonly IDictionary<int, string> asciiMnemonics = new Dictionary<int, string>
             {
-            {0x00, "<NULL>"},
-            {0x01, "<SOH>"},
-            {0x02, "<STH>"},
-            {0x03, "<ETX>"},
-            {0x04, "<EOT>"},
-            {0x05, "<ENQ>"},
-            {0x06, "<ACK>"},
-            {0x07, "<BELL>"},
-            {0x08, "<BS>"},
-            {0x09, "<HT>"},
-            {0x0A, "<LF>"},
-            {0x0B, "<VT>"},
-            {0x0C, "<FF>"},
-            {0x0D, "<CR>"},
-            {0x0E, "<SO>"},
-            {0x0F, "<SI>"},
-            {0x11, "<DC1>"},
-            {0x12, "<DC2>"},
-            {0x13, "<DC3>"},
-            {0x14, "<DC4>"},
-            {0x15, "<NAK>"},
-            {0x16, "<SYN>"},
-            {0x17, "<ETB>"},
-            {0x18, "<CAN>"},
-            {0x19, "<EM>"},
-            {0x1A, "<SUB>"},
-            {0x1B, "<ESC>"},
-            {0x1C, "<FS>"},
-            {0x1D, "<GS>"},
-            {0x1E, "<RS>"},
-            {0x1F, "<US>"},
+                {0x00, "<NULL>"},
+                {0x01, "<SOH>"},
+                {0x02, "<STH>"},
+                {0x03, "<ETX>"},
+                {0x04, "<EOT>"},
+                {0x05, "<ENQ>"},
+                {0x06, "<ACK>"},
+                {0x07, "<BELL>"},
+                {0x08, "<BS>"},
+                {0x09, "<HT>"},
+                {0x0A, "<LF>"},
+                {0x0B, "<VT>"},
+                {0x0C, "<FF>"},
+                {0x0D, "<CR>"},
+                {0x0E, "<SO>"},
+                {0x0F, "<SI>"},
+                {0x11, "<DC1>"},
+                {0x12, "<DC2>"},
+                {0x13, "<DC3>"},
+                {0x14, "<DC4>"},
+                {0x15, "<NAK>"},
+                {0x16, "<SYN>"},
+                {0x17, "<ETB>"},
+                {0x18, "<CAN>"},
+                {0x19, "<EM>"},
+                {0x1A, "<SUB>"},
+                {0x1B, "<ESC>"},
+                {0x1C, "<FS>"},
+                {0x1D, "<GS>"},
+                {0x1E, "<RS>"},
+                {0x1F, "<US>"},
             //{ 0x20, "<SP>" },
-            {0x7F, "<DEL>"}
+                {0x7F, "<DEL>"}
             };
 
-        public static string GetString(this byte[] bytes)
+        public static bool CaseInsensitiveEquals(this string lhs, string rhs)
             {
-            Contract.Requires(bytes != null);
-            Contract.Ensures(Contract.Result<string>() != null);
-            var builder = new StringBuilder(bytes.Length);
-            for (var i = 0; i < bytes.Length; i++)
-                builder.Append(AsciiEncoding[bytes[i] & 0x7F]);
-            return builder.ToString();
+            Contract.Requires(lhs != null);
+            Contract.Requires(rhs != null);
+            return string.Equals(lhs.ToLower(), rhs.ToLower());
+            }
+
+        /// <summary>
+        ///     Removes all unwanted characters from a string.
+        /// </summary>
+        /// <param name="source">The source string.</param>
+        /// <param name="clean">A list of the unwanted characters. All other characters will be preserved.</param>
+        /// <returns>
+        ///     A new string with all of the unwanted characters deleted. Returns <see cref="string.Empty" />
+        ///     if all of the characters were deleted or if the source string was null or empty.
+        /// </returns>
+        /// <remarks>
+        ///     Contrast with <see cref="Keep" />
+        /// </remarks>
+        /// <seealso cref="Keep" />
+        public static string Clean(this string source, string clean)
+            {
+            if (string.IsNullOrEmpty(source))
+                return string.Empty;
+            var cleanString = new StringBuilder(source.Length);
+            foreach (var ch in source)
+                {
+                if (!clean.Contains(ch))
+                    cleanString.Append(ch);
+                }
+            return cleanString.ToString();
+            }
+
+        public static bool Contains(this string s, string value)
+            {
+            Contract.Requires(s != null);
+            Contract.Requires(value != null);
+            return s.IndexOf(value) >= 0;
+            }
+
+        public static bool EndsWith(this string s, string value)
+            {
+            Contract.Requires(s != null);
+            Contract.Requires(value != null);
+            return s.IndexOf(value) == s.Length - value.Length;
             }
 
         /// <summary>
@@ -110,32 +147,14 @@ namespace ASCOM.K8056
             return asciiMnemonics.ContainsKey(asciiCode) ? asciiMnemonics[asciiCode] : c.ToString();
             }
 
-        public static bool CaseInsensitiveEquals(this string lhs, string rhs)
+        public static string GetString(this byte[] bytes)
             {
-            Contract.Requires(lhs != null);
-            Contract.Requires(rhs != null);
-            return string.Equals(lhs.ToLower(), rhs.ToLower());
-            }
-
-        public static bool EndsWith(this string s, string value)
-            {
-            Contract.Requires(s != null);
-            Contract.Requires(value != null);
-            return s.IndexOf(value) == s.Length - value.Length;
-            }
-
-        public static bool StartsWith(this string s, string value)
-            {
-            Contract.Requires(s != null);
-            Contract.Requires(value != null);
-            return s.IndexOf(value) == 0;
-            }
-
-        public static bool Contains(this string s, string value)
-            {
-            Contract.Requires(s != null);
-            Contract.Requires(value != null);
-            return s.IndexOf(value) >= 0;
+            Contract.Requires(bytes != null);
+            Contract.Ensures(Contract.Result<string>() != null);
+            var builder = new StringBuilder(bytes.Length);
+            for (var i = 0; i < bytes.Length; i++)
+                builder.Append(AsciiEncoding[bytes[i] & 0x7F]);
+            return builder.ToString();
             }
 
         /// <summary>
@@ -156,24 +175,6 @@ namespace ASCOM.K8056
             }
 
         /// <summary>
-        ///     Returns the specified number of characters from the tail of a string.
-        /// </summary>
-        /// <param name="source">The source string.</param>
-        /// <param name="length">The number of characters to be returned, must not be greater than the length of the string.</param>
-        /// <returns>The specified number of characters from the tail of the source string, as a new string.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if the requested number of characters exceeds the string length.</exception>
-        public static string Tail(this string source, int length)
-            {
-            var srcLength = source.Length;
-            if (length > srcLength)
-                {
-                throw new ArgumentOutOfRangeException("source",
-                    "The specified length is greater than the length of the string.");
-                }
-            return source.Substring(srcLength - length, length);
-            }
-
-        /// <summary>
         ///     Keeps only the wanted (that is, removes all unwanted characters) from the string.
         /// </summary>
         /// <param name="source">The source string.</param>
@@ -191,32 +192,6 @@ namespace ASCOM.K8056
             foreach (var ch in source)
                 {
                 if (keep.Contains(ch))
-                    cleanString.Append(ch);
-                }
-            return cleanString.ToString();
-            }
-
-        /// <summary>
-        ///     Removes all unwanted characters from a string.
-        /// </summary>
-        /// <param name="source">The source string.</param>
-        /// <param name="clean">A list of the unwanted characters. All other characters will be preserved.</param>
-        /// <returns>
-        ///     A new string with all of the unwanted characters deleted. Returns <see cref="string.Empty" />
-        ///     if all of the characters were deleted or if the source string was null or empty.
-        /// </returns>
-        /// <remarks>
-        ///     Contrast with <see cref="Keep" />
-        /// </remarks>
-        /// <seealso cref="Keep" />
-        public static string Clean(this string source, string clean)
-            {
-            if (string.IsNullOrEmpty(source))
-                return string.Empty;
-            var cleanString = new StringBuilder(source.Length);
-            foreach (var ch in source)
-                {
-                if (!clean.Contains(ch))
                     cleanString.Append(ch);
                 }
             return cleanString.ToString();
@@ -246,6 +221,31 @@ namespace ASCOM.K8056
             if (length < 1)
                 return source;
             return source.Head(source.Length - length);
+            }
+
+        public static bool StartsWith(this string s, string value)
+            {
+            Contract.Requires(s != null);
+            Contract.Requires(value != null);
+            return s.IndexOf(value) == 0;
+            }
+
+        /// <summary>
+        ///     Returns the specified number of characters from the tail of a string.
+        /// </summary>
+        /// <param name="source">The source string.</param>
+        /// <param name="length">The number of characters to be returned, must not be greater than the length of the string.</param>
+        /// <returns>The specified number of characters from the tail of the source string, as a new string.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the requested number of characters exceeds the string length.</exception>
+        public static string Tail(this string source, int length)
+            {
+            var srcLength = source.Length;
+            if (length > srcLength)
+                {
+                throw new ArgumentOutOfRangeException("source",
+                    "The specified length is greater than the length of the string.");
+                }
+            return source.Substring(srcLength - length, length);
             }
 
         /// <summary>
