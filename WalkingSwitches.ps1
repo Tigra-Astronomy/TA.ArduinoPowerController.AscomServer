@@ -7,9 +7,9 @@ try
         for ($i = 0; $i -lt 8; $i++) 
         {
             $driver.SetSwitch($i, $true)
-            Start-Sleep -Milliseconds 100
+            Start-Sleep -Milliseconds 250
             $driver.SetSwitch($i, $false)
-            Start-Sleep -Milliseconds 100
+            Start-Sleep -Milliseconds 250
         }
     }
 }
