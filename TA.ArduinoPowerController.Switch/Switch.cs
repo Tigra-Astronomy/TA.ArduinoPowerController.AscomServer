@@ -8,6 +8,7 @@
 using System;
 using System.Collections;
 using System.Collections.Specialized;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using ASCOM;
 using ASCOM.DeviceInterface;
@@ -27,7 +28,7 @@ using System.Windows.Forms;
 namespace TA.ArduinoPowerController.AscomSwitch
     {
     [ProgId(SharedResources.SwitchDriverId)]
-    [Guid("A864F06E-B5CC-4566-BCBF-59FAC56E6DDB")]
+    [Guid("7e30c5fc-bfdc-48a7-b3d3-965e0ad100a2")]
     [ComVisible(true)]
     [ClassInterface(ClassInterfaceType.None)]
     [UsedImplicitly]
@@ -99,7 +100,7 @@ namespace TA.ArduinoPowerController.AscomSwitch
         /// <summary>
         ///     Returns a description of the device, such as manufacturer and modelnumber. Any ASCII characters may be used.
         /// </summary>
-        public string Description => "Velleman K8056 Relay Card";
+        public string Description => "Arduino Power Controller";
 
         public void Dispose()
             {
@@ -110,16 +111,24 @@ namespace TA.ArduinoPowerController.AscomSwitch
         /// <summary>
         ///     Descriptive and version information about this ASCOM driver.
         /// </summary>
-        public string DriverInfo => @"ASCOM Switch driver for Velleman K8056 8-port relay card
+        public string DriverInfo => @"ASCOM Switch driver for Arduino Power Controller
 Developed by Tigra Astronomy
-in collaboration with Oxford University Department of Astrophysics.
-Project page: http://tigra-astronomy.com/oss/k8056-switch-driver
+Project page: http://tigra-astronomy.com/oss/arduino-power-controller
 Licensed under the MIT License: http://tigra.mit-license.org/";
 
         /// <summary>
         ///     A string containing only the major and minor version of the driver.
         /// </summary>
-        public string DriverVersion => "0.0";
+        [NotNull]
+        public string DriverVersion
+            {
+            get
+                {
+                var myAssembly = Assembly.GetExecutingAssembly();
+                var myVersion = myAssembly.GetName().Version;
+                return $"{myVersion.Major}.{myVersion.Minor}";
+                }
+            }
 
         [MustBeConnected]
         public bool GetSwitch(short id) => shadow[id];
@@ -240,15 +249,9 @@ Licensed under the MIT License: http://tigra.mit-license.org/";
                 if (fromUserCode)
                     {
                     SharedResources.ConnectionManager.UnregisterClient(clientId);
-                    // Do not dispose of any objects that may be referenced elsewhere.
                     }
-
-                // ToDo - Release unmanaged resources here, if necessary.
                 }
             disposed = true;
-
-            // ToDo: Call the base class's Dispose(Boolean) method, if available.
-            // base.Dispose(fromUserCode);
             }
 
 
@@ -262,7 +265,7 @@ Licensed under the MIT License: http://tigra.mit-license.org/";
 
         /// <summary>
         ///     Installs a custom assembly resolver into the AppDomain so that the driver can find its
-        ///     referenced assemblies.
+        ///     referenced assemblies. This avoids the need for strong-naming
         /// </summary>
         private void HandleAssemblyResolveEvents()
             {

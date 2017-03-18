@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>b847a048-c924-4134-bd60-c111b0d37c8b</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>ASCOM.K8056.Switch.Setup</OutputName>
+    <OutputName>TA.ArduinoPowerController</OutputName>
     <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
@@ -15,18 +15,38 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DefineConstants>Debug</DefineConstants>
+    <SuppressIces>ICE69</SuppressIces>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug</DefineConstants>
+    <SuppressIces>ICE69</SuppressIces>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressIces>ICE69</SuppressIces>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressIces>ICE69</SuppressIces>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ASCOM.K8056.Switch\ASCOM.K8056.Switch.csproj">
+    <ProjectReference Include="..\TA.ArduinoPowerController.DeviceInterface\TA.ArduinoPowerController.DeviceInterface.csproj">
+      <Name>DeviceLayer</Name>
+      <Project>{3015f05f-d747-4c3e-a0d4-ec2b3bd76c56}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\TA.ArduinoPowerController.Server\TA.ArduinoPowerController.Server.csproj">
+      <Name>Server</Name>
+      <Project>{3689a2cb-94c5-4012-a5cf-7e7d1dd27143}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+    <ProjectReference Include="..\TA.ArduinoPowerController.Switch\TA.ArduinoPowerController.AscomSwitch.csproj">
       <Name>SwitchDriver</Name>
       <Project>{ed0fe6aa-e1e5-4d21-9b5e-802d50edcce1}</Project>
       <Private>True</Private>
@@ -37,22 +57,6 @@
     <ProjectReference Include="..\TA.PostSharp.Aspects\TA.PostSharp.Aspects.csproj">
       <Name>Aspects</Name>
       <Project>{9cdcf319-dadc-41eb-b787-de3862017e95}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-    <ProjectReference Include="..\TA.VellemanK8056.DeviceInterface\TA.VellemanK8056.DeviceInterface.csproj">
-      <Name>DeviceLayer</Name>
-      <Project>{3015f05f-d747-4c3e-a0d4-ec2b3bd76c56}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
-    <ProjectReference Include="..\TA.VellemanK8056.Server\TA.VellemanK8056.Server.csproj">
-      <Name>Server</Name>
-      <Project>{3689a2cb-94c5-4012-a5cf-7e7d1dd27143}</Project>
       <Private>True</Private>
       <DoNotHarvest>True</DoNotHarvest>
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>

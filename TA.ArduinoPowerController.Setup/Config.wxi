@@ -1,15 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <Include>
-  <!-- User Configuration - you must ensure all these variables have correct values for your project -->
-  <?define InstallName = "ASCOM Driver for Velleman K8056 Relay Module" ?>
+  <!--
+    User Configuration - you must ensure all these variables have correct values for your project. 
+    GUIDs specified here must match those used in the project files, and must be unique to this product.
+    The LocalServerAppId is defined in the Server project, in LocalServer.cs
+    Driver Class IDs are defined in each driver class, in the [Guid()] attribute.
+    Driver ProgIDs must match those used in the source code, typically this will be defined in the LocalServer
+    project as a constant in the SharedResources static class.
+    UpgradeCode must be unique to this product and should not be changed for the product lifetime.
+  -->
+  
+  <?define InstallName = "ASCOM Switch Driver for Arduino Power Controller" ?>
   <?define Manufacturer = "Tigra Astronomy" ?>
   <?define InstallDirectory = "$(var.InstallName)" ?>
-  <?define LocalServerAppId = "{11f49188-8a51-4a55-a96f-fff4cd595be8}" ?>
+  <?define UpgradeCode = "{b214cbed-7f8a-466e-9d55-a4b1477402d1}" ?>
+  <?define LocalServerAppId = "{50e4c255-0a0e-4276-bd33-aae742da21b1}" ?>
   <?define CopyrightNotice="Copyright © 2017 Tigra Astronomy, all rights reserved" ?>
-  <?define SwitchDriverClassId="{A864F06E-B5CC-4566-BCBF-59FAC56E6DDB}" ?>
-  <?define SwitchDriverProgId="ASCOM.K8056.Switch" ?>
-  <?define SwitchDriverDescription="Velleman K8056 Relay Module" ?>
+  <?define SwitchDriverClassId="{7e30c5fc-bfdc-48a7-b3d3-965e0ad100a2}" ?>
+  <?define SwitchDriverProgId="ASCOM.ArduinoPowerController.Switch" ?>
+  <?define SwitchDriverDescription="Arduino Power Controller" ?>
   <!-- End of User Configuration - do not edit anything beyond this point -->
 
   <!-- Define platform-specific names and locations -->

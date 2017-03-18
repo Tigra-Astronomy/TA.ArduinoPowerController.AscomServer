@@ -5,7 +5,7 @@
            Name="$(var.InstallName)" 
            Language="1033" Version="$(var.ProductVersion)" 
            Manufacturer="$(var.Manufacturer)" 
-           UpgradeCode="{54d84bce-4293-49ae-86b5-3e89ee9ab455}">
+           UpgradeCode="$(var.UpgradeCode)">
 		<Package InstallerVersion="400" Compressed="yes" InstallScope="perMachine" />
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab="yes" />

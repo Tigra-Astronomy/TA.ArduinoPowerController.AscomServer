@@ -300,7 +300,7 @@ namespace TA.ArduinoPowerController.Server
         private static List<string> s_ComObjectAssys; // Dynamically loaded assemblies containing served COM objects
         private static List<Type> s_ComObjectTypes; // Served COM object types
         private static ArrayList s_ClassFactories; // Served COM object class factories
-        private static readonly string s_appId = "{11f49188-8a51-4a55-a96f-fff4cd595be8}"; // Our AppId
+        private static readonly string s_appId = "{50e4c255-0a0e-4276-bd33-aae742da21b1}"; // Our AppId
         private static readonly object lockObject = new object();
         #endregion
 
