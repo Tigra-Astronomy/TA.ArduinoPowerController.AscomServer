@@ -1,5 +1,5 @@
 
-$sw = New-Object -ComObject  ASCOM.K8056.Switch
+$sw = New-Object -ComObject  ASCOM.ArduinoPowerController.Switch
 $sw.Connected = $true
 
 Function WalkState([bool] $state)

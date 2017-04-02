@@ -3,7 +3,7 @@
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
 // 
-// File: LocalServer.cs  Last modified: 2017-03-16@23:33 by Tim Long
+// File: LocalServer.cs  Last modified: 2017-04-02@18:43 by Tim Long
 
 using System;
 using System.Collections;
@@ -141,7 +141,7 @@ namespace TA.ArduinoPowerController.Server
                         default:
                             MessageBox.Show(
                                 "Unknown argument: " + args[0] + "\nValid are : -register, -unregister and -embedding",
-                                "ASCOM driver for Velleman K8056 Relay Module", MessageBoxButtons.OK,
+                                "ASCOM driver for Arduino Power Controller", MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation);
                             break;
                     }
@@ -421,12 +421,12 @@ namespace TA.ArduinoPowerController.Server
                 {
                 MessageBox.Show(
                     "The LocalServer was not " + (arg == "/register" ? "registered" : "unregistered") +
-                    " because you did not allow it.", "ASCOM.K8056.Switch", MessageBoxButtons.OK,
+                    " because you did not allow it.", SharedResources.SwitchDriverId, MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 }
             catch (Exception ex)
                 {
-                MessageBox.Show(ex.ToString(), "ASCOM.K8056.Switch", MessageBoxButtons.OK,
+                MessageBox.Show(ex.ToString(), SharedResources.SwitchDriverId, MessageBoxButtons.OK,
                     MessageBoxIcon.Stop);
                 }
             }
@@ -485,7 +485,7 @@ namespace TA.ArduinoPowerController.Server
             catch (Exception ex)
                 {
                 MessageBox.Show("Error while registering the server:\n" + ex,
-                    "ASCOM.K8056.Switch", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    SharedResources.SwitchDriverId, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
                 }
             finally {}
@@ -553,7 +553,7 @@ namespace TA.ArduinoPowerController.Server
                 catch (Exception ex)
                     {
                     MessageBox.Show("Error while registering the server:\n" + ex,
-                        "ASCOM.K8056.Switch", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        SharedResources.SwitchDriverId, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     bFail = true;
                     }
                 finally {}

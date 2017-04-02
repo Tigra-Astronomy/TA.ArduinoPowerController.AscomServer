@@ -93,7 +93,7 @@
             this.ProductTitle.Name = "ProductTitle";
             this.ProductTitle.Size = new System.Drawing.Size(305, 30);
             this.ProductTitle.TabIndex = 3;
-            this.ProductTitle.Text = "Velleman K8056 Relay Module";
+            this.ProductTitle.Text = "Arduino Power Controller";
             // 
             // label1
             // 
