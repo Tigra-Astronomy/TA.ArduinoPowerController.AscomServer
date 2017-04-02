@@ -121,7 +121,7 @@ namespace TA.ArduinoPowerController.Server
             this.Name = "SetupDialogForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Integra85 Rotator Setup";
+            this.Text = "Arduino Power Controller Setup";
             this.Load += new System.EventHandler(this.SetupDialogForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picASCOM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectionErrorProvider)).EndInit();
