@@ -199,8 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASCOM.png" />
-    <Content Include="contributors.txt" />
-    <Content Include="ReadMe.htm" />
     <Content Include="Resources\ASCOM.bmp" />
     <Content Include="Resources\ASCOM.ico" />
     <Content Include="Resources\ASCOM.png" />
