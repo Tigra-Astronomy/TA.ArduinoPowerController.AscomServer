@@ -160,7 +160,7 @@ namespace TA.ArduinoPowerController.Server
         ///     The client must provide it's ID which has previously been obtained by calling
         ///     <see cref="RegisterClient" />.
         /// </param>
-        /// <returns>IIntegraController.</returns>
+        /// <returns>An instance of <see cref="DeviceController"/> which is online and ready to accept commands.</returns>
         /// <exception cref="System.InvalidOperationException">
         ///     Clients must release previous controller instances before requesting another
         /// </exception>
