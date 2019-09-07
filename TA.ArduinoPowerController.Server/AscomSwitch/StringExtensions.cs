@@ -11,7 +11,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 
-namespace TA.ArduinoPowerController.AscomSwitch
+namespace TA.ArduinoPowerController.Server.AscomSwitch
     {
     public static class StringExtensions
         {

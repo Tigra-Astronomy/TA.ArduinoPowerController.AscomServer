@@ -46,14 +46,6 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
-    <ProjectReference Include="..\TA.ArduinoPowerController.Switch\TA.ArduinoPowerController.AscomSwitch.csproj">
-      <Name>SwitchDriver</Name>
-      <Project>{ed0fe6aa-e1e5-4d21-9b5e-802d50edcce1}</Project>
-      <Private>True</Private>
-      <DoNotHarvest>True</DoNotHarvest>
-      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
-      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
-    </ProjectReference>
     <ProjectReference Include="..\TA.PostSharp.Aspects\TA.PostSharp.Aspects.csproj">
       <Name>Aspects</Name>
       <Project>{9cdcf319-dadc-41eb-b787-de3862017e95}</Project>
