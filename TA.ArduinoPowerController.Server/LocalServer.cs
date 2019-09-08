@@ -1,8 +1,8 @@
 // This file is part of the TA.ArduinoPowerController project
-// 
+//
 // Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
 // Licensed under the Tigra MIT license, see http://tigra.mit-license.org/
-// 
+//
 // File: LocalServer.cs  Last modified: 2019-09-07@06:25 by Tim Long
 
 using System;
@@ -39,12 +39,13 @@ namespace TA.ArduinoPowerController.Server
         // ==================
         //
         [STAThread]
-        [NLogTraceWithArguments]
         private static void Main(string[] args)
         {
             // Manage unhandled exceptions
             Application.ThreadException += UnhandledThreadException;
             AppDomain.CurrentDomain.UnhandledException += UnhandledException;
+            Log.Info().Message("===== Application Start =====").Write();
+            LogVersionStrings();
 
             var drivers = new DriverDiscovery();
             drivers.DiscoverServedClasses();
@@ -106,6 +107,16 @@ namespace TA.ArduinoPowerController.Server
         }
 
         #endregion
+
+        private static void LogVersionStrings()
+        {
+            Log.Info().Message("Semantic version: {semVer}", GitVersionExtensions.GitSemVer).Write();
+            Log.Debug().Message("Informational Version: {informationalVersion}", GitVersionExtensions.GitInformationalVersion).Write();
+            Log.Debug().Message("Git Commit ID: {fullCommit}", GitVersionExtensions.GitCommitSha).Write();
+            Log.Debug().Message("Git Short ID: {shortCommit}", GitVersionExtensions.GitCommitShortSha).Write();
+            Log.Debug().Message("Commit Date: {commitDate}", GitVersionExtensions.GitCommitDate).Write();
+        }
+
 
         #region Command Line Arguments
 

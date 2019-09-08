@@ -12,7 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Shared Items", "Solution Shared Items", "{2D14AE63-4259-4517-8C0B-B5A2A6D47007}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
 		ReadMe.md = ReadMe.md
 		WalkingSwitches.ps1 = WalkingSwitches.ps1
 	EndProjectSection
@@ -23,6 +22,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TA.ArduinoPowerController.S
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{3015f05f-d747-4c3e-a0d4-ec2b3bd76c56}*SharedItemsImports = 4
+		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{3689a2cb-94c5-4012-a5cf-7e7d1dd27143}*SharedItemsImports = 4
 		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{6778254b-a2cd-4364-bf2b-249b59285136}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,9 +73,7 @@ Global
 		{9CDCF319-DADC-41EB-B787-DE3862017E95}.Release|x86.Build.0 = Release|Any CPU
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Debug|x64.ActiveCfg = Debug|x64
-		{B847A048-C924-4134-BD60-C111B0D37C8B}.Debug|x64.Build.0 = Debug|x64
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Debug|x86.ActiveCfg = Debug|x86
-		{B847A048-C924-4134-BD60-C111B0D37C8B}.Debug|x86.Build.0 = Debug|x86
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Release|Any CPU.ActiveCfg = Release|x86
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Release|x64.ActiveCfg = Release|x64
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Release|x64.Build.0 = Release|x64

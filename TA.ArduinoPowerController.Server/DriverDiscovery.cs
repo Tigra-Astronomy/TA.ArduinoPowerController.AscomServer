@@ -1,8 +1,8 @@
 ﻿// This file is part of the TA.ArduinoPowerController project
-// 
+//
 // Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
 // Licensed under the Tigra MIT license, see http://tigra.mit-license.org/
-// 
+//
 // File: DriverDiscovery.cs  Last modified: 2019-09-07@05:21 by Tim Long
 
 using System;
@@ -14,10 +14,16 @@ using NLog.Fluent;
 
 namespace TA.ArduinoPowerController.Server
 {
-    internal class DriverDiscovery : MarshalByRefObject
+    /// <summary>
+    /// Discovers and stores a list of all types within this assembly that implement one of the ASCOM
+    /// device interfaces. These are identified by the presence of a <see cref="ServedClassNameAttribute"/>
+    /// on the class.
+    /// </summary>
+    /// <seealso cref="System.MarshalByRefObject" />
+    internal class DriverDiscovery
     {
         /// <summary>
-        ///     Gets the full name of the LocalServer assembly
+        ///     Gets the full assembly name of the LocalServer assembly
         /// </summary>
         public string DiscoveredAssemblyName { get; private set; } = string.Empty;
 

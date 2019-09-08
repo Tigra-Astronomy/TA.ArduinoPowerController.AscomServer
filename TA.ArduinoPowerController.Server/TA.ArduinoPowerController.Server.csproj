@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props" Condition="Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -39,7 +40,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\BuildOutput\</OutputPath>
+    <OutputPath>..\BuildOutput\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,7 +51,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\BuildOutput\</OutputPath>
+    <OutputPath>..\BuildOutput\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -141,9 +142,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +162,7 @@
       <DependentUpon>CommunicationSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="GarbageCollection.cs" />
+    <Compile Include="GitVersionExtensions.cs" />
     <Compile Include="LocalServer.cs" />
     <Compile Include="NotifyPropertyChangeReactiveExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -178,7 +177,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="ReferenceCountedObject.cs" />
-    <Compile Include="ServedComClassLocator.cs" />
+    <Compile Include="DriverDiscovery.cs" />
     <Compile Include="ServerStatusDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +276,7 @@
       <Name>TA.PostSharp.Aspects</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems" Label="Shared" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -296,4 +296,12 @@
     <Error Condition="!Exists('..\packages\PostSharp.4.3.31\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
     <Error Condition="Exists('..\packages\PostSharp.4.3.31\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
   </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.5.0.1\build\GitVersionTask.props'))" />
+    <Error Condition="!Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets'))" />
+  </Target>
+  <Import Project="..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.5.0.1\build\GitVersionTask.targets')" />
 </Project>

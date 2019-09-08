@@ -1,8 +1,8 @@
 ﻿// This file is part of the TA.ArduinoPowerController project
-// 
+//
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
-// 
+//
 // File: ReactiveTransactionProcessorFactory.cs  Last modified: 2017-03-16@23:33 by Tim Long
 
 using System;
@@ -11,6 +11,12 @@ using TA.Ascom.ReactiveCommunications;
 
 namespace TA.ArduinoPowerController.DeviceInterface
     {
+    /// <summary>
+    /// Class ReactiveTransactionProcessorFactory. Used to set up and tear down the communications stack
+    /// as the device is connected and disconnected.
+    /// Implements <see cref="TA.ArduinoPowerController.DeviceInterface.ITransactionProcessorFactory" />
+    /// </summary>
+    /// <seealso cref="TA.ArduinoPowerController.DeviceInterface.ITransactionProcessorFactory" />
     public class ReactiveTransactionProcessorFactory : ITransactionProcessorFactory
         {
         public string ConnectionString { get; }
@@ -35,6 +41,7 @@ namespace TA.ArduinoPowerController.DeviceInterface
         public ITransactionProcessor CreateTransactionProcessor()
             {
             Endpoint = DeviceEndpoint.FromConnectionString(ConnectionString);
+            //ToDo: use new create semantics after updating Rx
             Channel = CommunicationsStackBuilder.BuildChannel(Endpoint);
             observer = new TransactionObserver(Channel);
             processor = new ReactiveTransactionProcessor();

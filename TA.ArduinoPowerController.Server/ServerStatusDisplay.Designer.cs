@@ -32,7 +32,6 @@ namespace TA.ArduinoPowerController.Server
             this.registeredClientCount = new System.Windows.Forms.Label();
             this.OnlineClients = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ClientStatus = new System.Windows.Forms.ListBox();
             this.annunciatorPanel1 = new ASCOM.Controls.AnnunciatorPanel();
             this.Relay0Annunciator = new ASCOM.Controls.Annunciator();
             this.Relay1Annunciator = new ASCOM.Controls.Annunciator();
@@ -48,7 +47,7 @@ namespace TA.ArduinoPowerController.Server
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(12, 10);
+            this.label1.Location = new System.Drawing.Point(12, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 21);
             this.label1.TabIndex = 0;
@@ -57,7 +56,7 @@ namespace TA.ArduinoPowerController.Server
             // registeredClientCount
             // 
             this.registeredClientCount.AutoSize = true;
-            this.registeredClientCount.Location = new System.Drawing.Point(122, 10);
+            this.registeredClientCount.Location = new System.Drawing.Point(122, 38);
             this.registeredClientCount.Name = "registeredClientCount";
             this.registeredClientCount.Size = new System.Drawing.Size(13, 13);
             this.registeredClientCount.TabIndex = 1;
@@ -66,7 +65,7 @@ namespace TA.ArduinoPowerController.Server
             // OnlineClients
             // 
             this.OnlineClients.AutoSize = true;
-            this.OnlineClients.Location = new System.Drawing.Point(226, 10);
+            this.OnlineClients.Location = new System.Drawing.Point(226, 38);
             this.OnlineClients.Name = "OnlineClients";
             this.OnlineClients.Size = new System.Drawing.Size(13, 13);
             this.OnlineClients.TabIndex = 3;
@@ -74,26 +73,14 @@ namespace TA.ArduinoPowerController.Server
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(166, 10);
+            this.label3.Location = new System.Drawing.Point(166, 38);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 21);
             this.label3.TabIndex = 2;
             this.label3.Text = "Online:";
             // 
-            // ClientStatus
-            // 
-            this.ClientStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientStatus.FormattingEnabled = true;
-            this.ClientStatus.Location = new System.Drawing.Point(13, 35);
-            this.ClientStatus.Name = "ClientStatus";
-            this.ClientStatus.Size = new System.Drawing.Size(514, 108);
-            this.ClientStatus.TabIndex = 4;
-            // 
             // annunciatorPanel1
             // 
-            this.annunciatorPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.annunciatorPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.annunciatorPanel1.Controls.Add(this.Relay0Annunciator);
             this.annunciatorPanel1.Controls.Add(this.Relay1Annunciator);
@@ -103,7 +90,7 @@ namespace TA.ArduinoPowerController.Server
             this.annunciatorPanel1.Controls.Add(this.Relay5Annunciator);
             this.annunciatorPanel1.Controls.Add(this.Relay6Annunciator);
             this.annunciatorPanel1.Controls.Add(this.Relay7Annunciator);
-            this.annunciatorPanel1.Location = new System.Drawing.Point(346, 7);
+            this.annunciatorPanel1.Location = new System.Drawing.Point(93, 14);
             this.annunciatorPanel1.Name = "annunciatorPanel1";
             this.annunciatorPanel1.Size = new System.Drawing.Size(181, 19);
             this.annunciatorPanel1.TabIndex = 5;
@@ -230,7 +217,7 @@ namespace TA.ArduinoPowerController.Server
             // 
             // SetupCommand
             // 
-            this.SetupCommand.Location = new System.Drawing.Point(265, 5);
+            this.SetupCommand.Location = new System.Drawing.Point(12, 12);
             this.SetupCommand.Name = "SetupCommand";
             this.SetupCommand.Size = new System.Drawing.Size(75, 23);
             this.SetupCommand.TabIndex = 8;
@@ -242,10 +229,11 @@ namespace TA.ArduinoPowerController.Server
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 160);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(310, 73);
             this.Controls.Add(this.SetupCommand);
             this.Controls.Add(this.annunciatorPanel1);
-            this.Controls.Add(this.ClientStatus);
             this.Controls.Add(this.OnlineClients);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.registeredClientCount);
@@ -254,6 +242,7 @@ namespace TA.ArduinoPowerController.Server
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Location = global::TA.ArduinoPowerController.Server.Properties.Settings.Default.MainFormLocation;
             this.Name = "ServerStatusDisplay";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Arduino Power Controller";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -271,7 +260,6 @@ namespace TA.ArduinoPowerController.Server
         private System.Windows.Forms.Label registeredClientCount;
         private System.Windows.Forms.Label OnlineClients;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox ClientStatus;
         private ASCOM.Controls.AnnunciatorPanel annunciatorPanel1;
         private System.Windows.Forms.Button SetupCommand;
         private ASCOM.Controls.Annunciator Relay0Annunciator;

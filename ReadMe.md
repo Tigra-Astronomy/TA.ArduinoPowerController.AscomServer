@@ -1,5 +1,4 @@
-Arduino Power Controller with ASCOM Switch Driver
-=================================================
+# Arduino Power Controller with ASCOM Switch Driver
 
 ![Arduino Power Controller][image]
 
@@ -7,8 +6,7 @@ This driver and its source code and the accompanying Arduino Sketch are licensed
 
 For further information, please visit the [Project Home Page][project] or the [BitBucket Source Repository][source].
 
-Project Description
--------------------
+## Project Description
 
 This project is designed to enable easy control of power to astronomical instruments and ancillary
 equipment in a robotic observatory. The module can be controlled via the ASCOM Switch interface
@@ -32,10 +30,9 @@ the relays directly from the USB power.
 Note that the Arduino is not capable of powering your equipment directly and it should never be
 directly connected to the power supply being switched. The output side of the relays must remain completely isolated from the Arduino and the USB connection. The observatory equipment itself should be powered using a separate power supply designed for the purpose.
 
-Software Architecture
----------------------
+## Software Architecture
 
-For developers, this project demonstrates some advanced techniques for developing ASCOM drivers. At Tigra Astronomy, we use techniques that differ significantly from the methods described in the ASCOM documentation. We have our own reasons for this and this is not to say that our techniques are better or more correct, but they do demonstrate some alternative practices.
+For developers, this project demonstrates some best practices for developing ASCOM drivers and can be used as a template project to create new drivers. At Tigra Astronomy, we use techniques that differ significantly from the methods described in the ASCOM documentation. We have our own reasons for this and this is not to say that our techniques are better or more correct, but they do demonstrate some alternative practices.
 
 In particular:
 
@@ -92,6 +89,9 @@ If you want to get involved but are not sure what to do, please check the [bug t
 Buy Me a Cup of Coffee
 ----------------------
 
+|   |   |
+|---|---|
+|   |   |
 Software development is powered by coffee! If you've found this driver useful, or you're just feeling benevolent, then you might consider [buying me a cup of coffee][coffee] (or several cups) using the link at the bottom of my web site. Thank you!
 
 August 2016, Tim Long <Tim@tigra-astronomy.com>

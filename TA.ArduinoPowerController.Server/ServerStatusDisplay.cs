@@ -94,19 +94,6 @@ namespace TA.ArduinoPowerController.Server
             SetUiButtonState();
             SetUiDeviceConnectedState();
             var clientStatus = SharedResources.ConnectionManager.Clients;
-            try
-                {
-                ClientStatus.BeginUpdate();
-                ClientStatus.Items.Clear();
-                foreach (var client in clientStatus)
-                    {
-                    ClientStatus.Items.Add(client);
-                    }
-                }
-            finally
-                {
-                ClientStatus.EndUpdate();
-                }
             registeredClientCount.Text = clientStatus.Count().ToString();
             OnlineClients.Text = clientStatus.Count(p => p.Online).ToString();
             ConfigureUiPropertyNotifications();
