@@ -9,7 +9,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace TA.ArduinoPowerController.Server
+namespace TA.ArduinoPowerController.Common
 {
     public static class GitVersionExtensions
     {

@@ -1,8 +1,8 @@
 // This file is part of the TA.ArduinoPowerController project
-// 
+//
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
-// 
+//
 // File: StringExtensions.cs  Last modified: 2017-03-17@17:37 by Tim Long
 
 using System;
@@ -11,7 +11,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 
-namespace TA.ArduinoPowerController.Server.AscomSwitch
+namespace TA.ArduinoPowerController.Common
     {
     public static class StringExtensions
         {

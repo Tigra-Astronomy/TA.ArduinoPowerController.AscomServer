@@ -19,6 +19,7 @@ using ASCOM;
 using ASCOM.Utilities;
 using Microsoft.Win32;
 using NLog.Fluent;
+using TA.ArduinoPowerController.Common;
 using TA.PostSharp.Aspects;
 
 namespace TA.ArduinoPowerController.Server

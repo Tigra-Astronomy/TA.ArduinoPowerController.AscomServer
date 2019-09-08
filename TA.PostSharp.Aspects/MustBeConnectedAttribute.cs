@@ -3,7 +3,7 @@
 // Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
 // Licensed under the Tigra MIT license, see http://tigra.mit-license.org/
 //
-// File: MustBeConnectedAttribute.cs  Last modified: 2019-09-08@03:11 by Tim Long
+// File: MustBeConnectedAttribute.cs  Last modified: 2019-09-08@05:25 by Tim Long
 
 using System;
 using System.Reflection;
@@ -24,16 +24,6 @@ namespace TA.PostSharp.Aspects
     public sealed class MustBeConnectedAttribute : OnMethodBoundaryAspect
     {
         private static int nesting;
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MustBeConnectedAttribute" /> class. Forces
-        ///     the <see cref="ApplyToStateMachine" /> property to false, as this aspect should only
-        ///     check advices upon first entry to any method.
-        /// </summary>
-        public MustBeConnectedAttribute()
-        {
-            ApplyToStateMachine = false;
-        }
 
         public override bool CompileTimeValidate(MethodBase method)
         {

@@ -9,7 +9,7 @@ using System;
 using System.Diagnostics.Contracts;
 using System.Text;
 
-namespace TA.ArduinoPowerController.Server.AscomSwitch
+namespace TA.ArduinoPowerController.Common
 {
     /// <summary>
     ///     An immutable representation of an 8 bit byte, with each bit individually addressable. In

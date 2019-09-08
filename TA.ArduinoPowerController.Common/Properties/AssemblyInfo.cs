@@ -7,5 +7,5 @@
 
 using System.Reflection;
 
-[assembly: AssemblyTitle("TA.PostSharp.Aspects")]
-[assembly: AssemblyDescription("AOP Aspects for Arduino Power Controller")]
+[assembly: AssemblyTitle("TA.ArduinoPowerController.Common")]
+[assembly: AssemblyDescription("Common code for Arduino Power Controller")]

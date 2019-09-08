@@ -14,6 +14,7 @@ using ASCOM;
 using ASCOM.DeviceInterface;
 using JetBrains.Annotations;
 using NLog;
+using TA.ArduinoPowerController.Common;
 using TA.ArduinoPowerController.DeviceInterface;
 using TA.ArduinoPowerController.Server.Properties;
 using TA.PostSharp.Aspects;
