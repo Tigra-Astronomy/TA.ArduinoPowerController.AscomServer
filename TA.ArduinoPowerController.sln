@@ -22,6 +22,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TA.ArduinoPowerController.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.ArduinoPowerController.Common", "TA.ArduinoPowerController.Common\TA.ArduinoPowerController.Common.csproj", "{09CBCBDC-0944-492F-B460-F289BBF06F82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.ArduinoPowerController.Test", "TA.ArduinoPowerController.Test\TA.ArduinoPowerController.Test.csproj", "{4C2BA771-DA96-4922-AC98-E68F202B9B47}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{09cbcbdc-0944-492f-b460-f289bbf06f82}*SharedItemsImports = 4
@@ -95,6 +97,18 @@ Global
 		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|x64.Build.0 = Release|Any CPU
 		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|x86.ActiveCfg = Release|Any CPU
 		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|x86.Build.0 = Release|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|x64.Build.0 = Debug|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|x86.Build.0 = Debug|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Release|x64.ActiveCfg = Release|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Release|x64.Build.0 = Release|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Release|x86.ActiveCfg = Release|Any CPU
+		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
