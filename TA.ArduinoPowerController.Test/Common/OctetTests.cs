@@ -1,59 +1,88 @@
-﻿// This file is part of the TA.UWP.IoTUtilities project
+﻿// This file is part of the TA.ArduinoPowerController project
 //
-// Copyright © 2015-2015 Tigra Astronomy., all rights reserved.
+// Copyright © 2016-2019 Tigra Astronomy, all rights reserved.
+// Licensed under the Tigra MIT license, see http://tigra.mit-license.org/
 //
-// File: OctetTests.cs  Last modified: 2015-11-10@15:27 by Tim Long
+// File: OctetTests.cs  Last modified: 2019-09-08@19:01 by Tim Long
 
-using FluentAssertions;
+using Machine.Specifications;
 using TA.ArduinoPowerController.Common;
-using Xunit;
 
 namespace TA.ArduinoPowerController.Test.Common
 {
-    public class OctetTests
+    [Subject(typeof(Octet), "Initialization")]
+    internal class when_an_octet_is_initialized_to_zero
     {
-        [Fact]
-        private void OctetZeroContainsAllBitsFalse()
-        {
-            var zero = Octet.Zero;
-            for (var i = 0; i < 8; i++)
+        Establish context;
+        Because of = () => zero = Octet.Zero;
+
+        It should_have_all_bits_clear = () =>
             {
-                zero[i].Should().BeFalse("Zero instance should always be false");
-            }
-        }
+                for (var i = 0; i < 8; i++)
+                {
+                    zero[i].ShouldBeFalse();
+                }
+            };
 
-        [Theory]
-        [InlineData(0, 0xFE)]
-        [InlineData(1, 0xFD)]
-        [InlineData(2, 0xFB)]
-        [InlineData(3, 0xF7)]
-        [InlineData(4, 0xEF)]
-        [InlineData(5, 0xDF)]
-        [InlineData(6, 0xBF)]
-        [InlineData(7, 0x7F)]
-        public void ClearingABitProducesANewObjectWithThatBitCleared(ushort bit, byte expected)
-        {
-            var allBitsSet = Octet.Max;
-            var oneBitClear = allBitsSet.WithBitSetTo(bit, false);
-            var expectedOctet = Octet.FromUnsignedInt(expected);
-            oneBitClear.Should().NotBeSameAs(allBitsSet, "octets are immutable");
-            oneBitClear.Should().Be(expectedOctet, "clearing a bit should only affect that bit");
-        }
+        static Octet zero;
+    }
 
-        [Fact]
-        public void BitwiseAndOperatorShouldMaskBits()
-        {
-            var mask = Octet.FromInt(0xAA);
-            var andResult = Octet.Max & mask;
-            andResult.Should().Be(mask, "bitwise AND should clear set");
-        }
+    [Subject(typeof(Octet), "bit clear")]
+    internal class when_a_bit_is_cleared
+    {
+        Establish context = () => immutableOctet = Octet.Max;
 
-        [Fact]
-        public void BitwiseOrOperatorShouldSetBits()
-        {
-            var mask = Octet.FromInt(0x0F);
-            var orResult = Octet.Zero | mask;
-            orResult.Should().Be(mask, "bitwise OR should set bits");
-        }
+        It should_produce_a_new_octet_with_that_bit_cleared = () =>
+            {
+                var octet = Octet.Max; // All bits set
+                for (int i = 0; i < 8; ++i)
+                {
+                    var actual = octet.WithBitSetTo(i, false);
+                    expected[i].ShouldEqual((byte) actual);
+                }
+                immutableOctet.ShouldEqual(Octet.Max);
+            };
+
+        static byte[] expected = {0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F};
+        static Octet immutableOctet;
+    }
+
+    [Subject(typeof(Octet), "bit set")]
+    internal class when_a_bit_is_set
+    {
+        Establish context = () => immutableOctet = Octet.Zero;
+
+        It should_produce_a_new_octet_with_that_bit_set = () =>
+            {
+                for (int i = 0; i < 8; ++i)
+                {
+                    var actual = immutableOctet.WithBitSetTo(i, true);
+                    expected[i].ShouldEqual((byte) actual);
+                }
+                immutableOctet.ShouldEqual(Octet.Zero);
+            };
+
+        static byte[] expected = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
+        static Octet immutableOctet;
+    }
+
+    [Subject(typeof(Octet), "bitwise AND")]
+    internal class when_a_bitwise_and_is_applied
+    {
+        Establish context = () => mask = 0xAA;
+        Because of = () => actual = Octet.Max & mask;
+        It should_mask_the_false_bits = () => actual.ShouldEqual(mask);
+        static Octet actual;
+        static Octet mask;
+    }
+
+    [Subject(typeof(Octet), "bitwise OR")]
+    internal class when_a_bitwise_or_is_applied
+    {
+        Establish context = () => mask = 0xAA;
+        Because of = () => actual = Octet.Zero | mask;
+        It should_set_the_true_bits = () => actual.ShouldEqual(mask);
+        static Octet actual;
+        static Octet mask;
     }
 }

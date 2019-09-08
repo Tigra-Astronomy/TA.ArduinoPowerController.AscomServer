@@ -193,12 +193,12 @@ File: $FILENAME$  Last modified: $CURRENT_YEAR$-$CURRENT_MONTH$-$CURRENT_DAY$@$C
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/UserRules/=NAMESPACE_005FALIAS/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="aaBb" /&gt;</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/UserRules/=XAML_005FFIELD/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb" /&gt;</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/XamlNaming/UserRules/=XAML_005FRESOURCE/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb" /&gt;</s:String>
-	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=A6161FA2ECF5704A9264E31DC4996B95/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=A6161FA2ECF5704A9264E31DC4996B95/AbsolutePath/@EntryValue">D:\VS-Projects\ASCOM.K8056.Switch\ASCOM.K8056.Switch.Specifications\ASCOM.K8056.Switch.Specifications.DotSettings</s:String>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=A6161FA2ECF5704A9264E31DC4996B95/RelativePath/@EntryValue">..\ASCOM.K8056.Switch.Specifications\ASCOM.K8056.Switch.Specifications.DotSettings</s:String>
-	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileA6161FA2ECF5704A9264E31DC4996B95/@KeyIndexDefined">True</s:Boolean>
-	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileA6161FA2ECF5704A9264E31DC4996B95/IsOn/@EntryValue">False</s:Boolean>
-	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=FileA6161FA2ECF5704A9264E31DC4996B95/RelativePriority/@EntryValue">1</s:Double>
+	
+	
+	
+	
+	
+	
 	<s:Boolean x:Key="/Default/Environment/MemoryUsageIndicator/IsVisible/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/PerformanceGuide/SwitchBehaviour/=AutoRecoverer/@EntryIndexedValue">LIVE_MONITOR</s:String>
 	<s:String x:Key="/Default/Environment/PerformanceGuide/SwitchBehaviour/=Format/@EntryIndexedValue">LIVE_MONITOR</s:String>
