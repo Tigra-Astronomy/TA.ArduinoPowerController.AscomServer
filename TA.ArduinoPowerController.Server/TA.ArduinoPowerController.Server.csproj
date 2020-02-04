@@ -86,7 +86,6 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppDomainIsolated.cs" />
     <Compile Include="AscomSwitch\Switch.cs" />
     <Compile Include="ClassFactory.cs" />
     <Compile Include="ClientConnectionManager.cs" />

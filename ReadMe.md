@@ -37,10 +37,13 @@ In particular:
   - `[NotifyPropertyChanged]` used in the device layer to implement the `INotifyPropertyChanged` interface automatically.
   - `[ReaderWriterSynchronized]` used in the `ClientConnectionManager` class within the LocalServer project to create a thread safe Reader/Writer lock around the list of connected clients. -
 
-- **Modified LocalServer** Our LocalServer implementation has a few interesting customizations.
+- **ASCOM Multi-instance Server** (aka COM LocalServer). The ASCOM LocalServer pattern was created by Bob Denny and has been improved over time by various contributors. This implementation has the following features:
 
-  - **Reduced Attack Surface Area** that uses the Reflection-only load context when searching for assemblies with ASCOM drivers. The original LocalServer loads every assembly it finds into the execution context whilst running with elevated permissions. That comes with a high risk since malicious code could very easily be dropped into the folder. We minimize this attack vector by examining all assemblies in the Reflection-only context, so that no malicious code could execute while the server has elevated permissions.At other times we only load the assemblies containing ASCOM drivers. Note: there is no known incident of a LocalServer being used as an attack vector, but once we had identified the possibility we felt that we had to address it.
-  - **Status Display GUI** that shows the status of each client connection and also updates annunciators to show the state of the hardware. This also provides easy access to the Setup Dialog.
+ - ** Compatible with 32-bit and 64-bit ** client applications. The multi-instance server pattern is the best approach for widest compatibility with 32-bit and 64-bit clients.
+ 
+  - **Status Display Window** using Windows Forms that shows the number of connected clients and also updates annunciators to show the state of the hardware. This also provides easy access to the Setup Dialog.. This uses an approach that keeps display logic separate from device logic. The display components use a "view model" that provides the data to be displayed, and can listen to the `INotifyPropertyChanged` interface to get update notifications. Therefore, the display updates automatically whenever data changes and it is not necessary to "poll" for data or have a periodic update loop. This is implemented using a Reactive programming style, which helps to ensure that all control updates happen correctly on the UI thread. Cross-thread control updates are potentially a major source of issues in a multi-threaded environment but these problems are completely avoided using the Reactive Extensions for .NET.
+
+  - **Improved Security**. The original LocalServer pattern would dynamically discover and load ASCOM driver assemblies at runtime. This offered some flexibility but also meant that potentially unwanted code could be loaded. This approach also came with some architectural issues. This implementation re-incorporates the ASCOM driver code back into the server executable. Drivers are still dynamically discovered, but must be an integral part of the server assembly and can no longer be loaded from disk. This improvement was suggested and demonstrated by Daniel Van Noord.
 
 ## Installation
 

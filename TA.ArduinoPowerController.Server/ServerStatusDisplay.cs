@@ -1,8 +1,8 @@
 // This file is part of the TA.ArduinoPowerController project
-// 
+//
 // Copyright © 2016-2017 Tigra Astronomy, all rights reserved.
 // Licensed under the MIT license, see http://tigra.mit-license.org/
-// 
+//
 // File: ServerStatusDisplay.cs  Last modified: 2017-03-16@23:34 by Tim Long
 
 using System;
@@ -122,6 +122,8 @@ namespace TA.ArduinoPowerController.Server
 
         /// <summary>
         ///     Creates subscriptions that observe property change notifications and update the UI as changes occur.
+        ///     This means that all display updates are automatic - there's never any need to periodically check
+        ///     for new data.
         /// </summary>
         private void SubscribePropertyChangeNotifications()
             {

@@ -10,24 +10,22 @@ using TA.ArduinoPowerController.Common;
 
 namespace TA.ArduinoPowerController.Test.Common
 {
-    [Subject(typeof(Octet), "Initialization")]
-    internal class when_an_octet_is_initialized_to_zero
+[Subject(typeof(Octet), "Initialization")]
+internal class when_an_octet_is_initialized_to_zero
     {
-        Establish context;
-        Because of = () => zero = Octet.Zero;
+    Because of = () => zero = Octet.Zero;
 
-        It should_have_all_bits_clear = () =>
+    It should_have_all_bits_clear = () =>
+        {
+        for (var i = 0; i < 8; i++)
             {
-                for (var i = 0; i < 8; i++)
-                {
-                    zero[i].ShouldBeFalse();
-                }
-            };
-
-        static Octet zero;
+            zero[i].ShouldBeFalse();
+            }
+        };
+    static Octet zero;
     }
 
-    [Subject(typeof(Octet), "bit clear")]
+[Subject(typeof(Octet), "bit clear")]
     internal class when_a_bit_is_cleared
     {
         Establish context = () => immutableOctet = Octet.Max;
