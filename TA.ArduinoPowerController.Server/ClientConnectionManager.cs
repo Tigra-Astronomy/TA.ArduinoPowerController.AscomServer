@@ -15,6 +15,7 @@ using PostSharp.Patterns.Threading;
 using TA.ArduinoPowerController.DeviceInterface;
 using TA.Ascom.ReactiveCommunications;
 using TA.PostSharp.Aspects;
+using TA.Utils.Core;
 
 namespace TA.ArduinoPowerController.Server
     {
@@ -116,7 +117,7 @@ namespace TA.ArduinoPowerController.Server
             if (!controllerInstance.Any())
                 {
                 var controller = new DeviceController(factory);
-                controllerInstance = new Maybe<DeviceController>(controller);
+                controllerInstance = Maybe<DeviceController>.From(controller);
                 }
             var instance = controllerInstance.Single();
             if (!instance.IsOnline)
@@ -183,7 +184,7 @@ namespace TA.ArduinoPowerController.Server
                 {
                 EnsureControllerInstanceCreatedAndOpen();
                 }
-            catch (TransactionException trex)
+            catch (DeviceInterface.TransactionException trex)
                 {
                 log.Error(trex, $"NOT CONNECTED due to transaction exception: {trex.Transaction}");
                 DestroyControllerInstance();

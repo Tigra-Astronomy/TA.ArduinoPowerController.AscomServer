@@ -6,6 +6,7 @@ namespace TA.NexDome.Specifications.Fakes
     using System;
 
     using TA.Ascom.ReactiveCommunications;
+    using TA.Utils.Core;
 
     class TestableDeviceTransaction : DeviceTransaction
         {
@@ -24,7 +25,7 @@ namespace TA.NexDome.Specifications.Fakes
 
         void SetResponse(string response)
             {
-            Response = new Maybe<string>(response);
+            Response = Maybe<string>.From(response);
             }
 
         internal void SignalCompletion(string fakeResponse)
