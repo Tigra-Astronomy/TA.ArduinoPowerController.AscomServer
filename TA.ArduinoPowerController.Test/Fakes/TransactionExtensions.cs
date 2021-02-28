@@ -9,6 +9,7 @@ namespace TA.NexDome.Specifications.Fakes
     using JetBrains.Annotations;
 
     using TA.Ascom.ReactiveCommunications;
+    using TA.Utils.Core;
 
     /// <summary>
     ///     Extension methods for manipulating non-public members of transaction classes.
@@ -23,7 +24,7 @@ namespace TA.NexDome.Specifications.Fakes
         /// <seealso cref="SimulateCompletionWithResponse" />
         public static void SetResponse(this DeviceTransaction transaction, [CanBeNull] string response)
             {
-            var maybeResponse = response == null ? Maybe<string>.Empty : new Maybe<string>(response);
+            var maybeResponse = response == null ? Maybe<string>.Empty : Maybe<string>.From(response);
             var transactionType = typeof(DeviceTransaction);
             var responseProperty = transactionType.GetProperty("Response");
             responseProperty.SetValue(
