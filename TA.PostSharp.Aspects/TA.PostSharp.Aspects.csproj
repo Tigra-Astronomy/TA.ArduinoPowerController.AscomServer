@@ -9,11 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TA.PostSharp.Aspects</RootNamespace>
     <AssemblyName>TA.PostSharp.Aspects</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <DontImportPostSharp>True</DontImportPostSharp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,55 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ASCOM.Astrometry, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.Astrometry.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.Attributes, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.Attributes.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.Controls, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.Controls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.DeviceInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.DeviceInterfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.DriverAccess, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.DriverAccess.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.Exceptions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.Exceptions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.Internal.Extensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.Internal.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.SettingsProvider, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.SettingsProvider.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.Utilities, Version=6.0.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.Utilities.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ASCOM.Utilities.Video, Version=6.1.0.0, Culture=neutral, PublicKeyToken=565de7938946fba7, processorArchitecture=MSIL">
-      <HintPath>..\packages\ASCOM.Platform.6.3.0\lib\net40\ASCOM.Utilities.Video.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.5\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="PostSharp, Version=4.3.31.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\packages\PostSharp.4.3.31\lib\net35-client\PostSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -96,19 +54,31 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AdditionalFiles Include="..\TA.ArduinoPowerController.ArchitectureValidation\Dependency Validation.layerdiagram">
+      <Link>Dependency Validation.layerdiagram</Link>
+      <Visible>False</Visible>
+    </AdditionalFiles>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="contributors.txt" />
+    <PackageReference Include="ASCOM.Platform">
+      <Version>6.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="GitVersion.MsBuild">
+      <Version>5.9.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.7.15</Version>
+    </PackageReference>
+    <PackageReference Include="PostSharp">
+      <Version>6.10.8</Version>
+    </PackageReference>
   </ItemGroup>
+  <Import Project="..\TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\PostSharp.4.3.31\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.3.31\tools\PostSharp.targets')" />
-  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
-    <Error Condition="!Exists('..\packages\PostSharp.4.3.31\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
-    <Error Condition="Exists('..\packages\PostSharp.4.3.31\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

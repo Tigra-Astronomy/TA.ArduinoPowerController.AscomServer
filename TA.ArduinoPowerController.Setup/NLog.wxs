@@ -9,7 +9,6 @@
               KeyPath="yes" />
         <!-- Configuration files, non-vital as the product will work without them -->
         <File Id="filNLogConfig" Source="$(var.Server.TargetDir)NLog.config" Vital="no" />
-        <File Id="filNLogDllConfig" Source="$(var.SwitchDriver.TargetDir)NLog.dll.nlog" Vital="no" />
       </Component>
     </ComponentGroup>
   </Fragment>

@@ -3,28 +3,11 @@
   <Fragment>
     <DirectoryRef Id="INSTALLDIRECTORY"/>
     <ComponentGroup Id="cgReactiveExtensions" Directory="INSTALLDIRECTORY" >
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
       <Component Id="cmpReactiveCore" Guid="*" Win64="no" >
         <File Id="filReactiveCore"        
-              Source="$(var.Server.TargetDir)System.Reactive.Core.dll"              
+              Source="$(var.Server.TargetDir)System.Reactive.dll"              
               Vital="yes" 
-              KeyPath="yes" />
-      </Component>
-      <Component Id="cmpReactiveInterfaces" Guid="*" Win64="no" >
-        <File Id="filReactiveInterfaces"  
-              Source="$(var.Server.TargetDir)System.Reactive.Interfaces.dll"        
-              Vital="yes"
-              KeyPath="yes" />
-      </Component>
-      <Component Id="cmpReactiveLinq" Guid="*" Win64="no" >
-        <File Id="filReactiveLinq"        
-              Source="$(var.Server.TargetDir)System.Reactive.Linq.dll"              
-              Vital="yes"
-              KeyPath="yes" />
-      </Component>
-      <Component Id="cmpReactivePlatform" Guid="*" Win64="no" >
-        <File Id="filReactivePlatform"    
-              Source="$(var.Server.TargetDir)System.Reactive.PlatformServices.dll"  
-              Vital="yes"
               KeyPath="yes" />
       </Component>
     </ComponentGroup>

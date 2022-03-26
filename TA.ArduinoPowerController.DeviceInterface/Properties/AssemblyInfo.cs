@@ -8,4 +8,4 @@
 using System.Reflection;
 
 [assembly: AssemblyTitle("TA.ArduinoPowerController.DeviceInterface")]
-[assembly: AssemblyDescription("Low level device communications layer")]
+[assembly: AssemblyDescription("Low level device communications layer for Arduino Power Controller")]

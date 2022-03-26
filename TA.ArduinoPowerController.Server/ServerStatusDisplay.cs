@@ -12,11 +12,11 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using ASCOM.Controls;
 using NLog;
 using TA.ArduinoPowerController.DeviceInterface;
 using TA.ArduinoPowerController.Server.Properties;
 using TA.Ascom.ReactiveCommunications.Diagnostics;
+using TA.WinFormsControls;
 
 namespace TA.ArduinoPowerController.Server
     {
@@ -94,19 +94,6 @@ namespace TA.ArduinoPowerController.Server
             SetUiButtonState();
             SetUiDeviceConnectedState();
             var clientStatus = SharedResources.ConnectionManager.Clients;
-            try
-                {
-                ClientStatus.BeginUpdate();
-                ClientStatus.Items.Clear();
-                foreach (var client in clientStatus)
-                    {
-                    ClientStatus.Items.Add(client);
-                    }
-                }
-            finally
-                {
-                ClientStatus.EndUpdate();
-                }
             registeredClientCount.Text = clientStatus.Count().ToString();
             OnlineClients.Text = clientStatus.Count(p => p.Online).ToString();
             ConfigureUiPropertyNotifications();
