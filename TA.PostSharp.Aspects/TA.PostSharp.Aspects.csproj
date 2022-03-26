@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ASCOM.Platform">
-      <Version>6.4.2</Version>
+      <Version>6.5.2</Version>
     </PackageReference>
     <PackageReference Include="GitVersionTask">
       <Version>5.0.1</Version>
@@ -71,10 +71,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.6.7</Version>
+      <Version>4.7.15</Version>
     </PackageReference>
     <PackageReference Include="PostSharp">
-      <Version>6.2.11</Version>
+      <Version>6.10.8</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="..\TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems" Label="Shared" />

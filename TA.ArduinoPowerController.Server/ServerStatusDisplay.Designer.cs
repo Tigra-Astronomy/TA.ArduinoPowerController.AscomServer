@@ -1,3 +1,5 @@
+using TA.WinFormsControls;
+
 namespace TA.ArduinoPowerController.Server
 {
     partial class ServerStatusDisplay
@@ -32,15 +34,15 @@ namespace TA.ArduinoPowerController.Server
             this.registeredClientCount = new System.Windows.Forms.Label();
             this.OnlineClients = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.annunciatorPanel1 = new ASCOM.Controls.AnnunciatorPanel();
-            this.Relay0Annunciator = new ASCOM.Controls.Annunciator();
-            this.Relay1Annunciator = new ASCOM.Controls.Annunciator();
-            this.Relay2Annunciator = new ASCOM.Controls.Annunciator();
-            this.Relay3Annunciator = new ASCOM.Controls.Annunciator();
-            this.Relay4Annunciator = new ASCOM.Controls.Annunciator();
-            this.Relay5Annunciator = new ASCOM.Controls.Annunciator();
-            this.Relay6Annunciator = new ASCOM.Controls.Annunciator();
-            this.Relay7Annunciator = new ASCOM.Controls.Annunciator();
+            this.annunciatorPanel1 = new AnnunciatorPanel();
+            this.Relay0Annunciator = new Annunciator();
+            this.Relay1Annunciator = new Annunciator();
+            this.Relay2Annunciator = new Annunciator();
+            this.Relay3Annunciator = new Annunciator();
+            this.Relay4Annunciator = new Annunciator();
+            this.Relay5Annunciator = new Annunciator();
+            this.Relay6Annunciator = new Annunciator();
+            this.Relay7Annunciator = new Annunciator();
             this.SetupCommand = new System.Windows.Forms.Button();
             this.annunciatorPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -260,16 +262,16 @@ namespace TA.ArduinoPowerController.Server
         private System.Windows.Forms.Label registeredClientCount;
         private System.Windows.Forms.Label OnlineClients;
         private System.Windows.Forms.Label label3;
-        private ASCOM.Controls.AnnunciatorPanel annunciatorPanel1;
+        private AnnunciatorPanel annunciatorPanel1;
         private System.Windows.Forms.Button SetupCommand;
-        private ASCOM.Controls.Annunciator Relay0Annunciator;
-        private ASCOM.Controls.Annunciator Relay1Annunciator;
-        private ASCOM.Controls.Annunciator Relay2Annunciator;
-        private ASCOM.Controls.Annunciator Relay3Annunciator;
-        private ASCOM.Controls.Annunciator Relay4Annunciator;
-        private ASCOM.Controls.Annunciator Relay5Annunciator;
-        private ASCOM.Controls.Annunciator Relay6Annunciator;
-        private ASCOM.Controls.Annunciator Relay7Annunciator;
+        private Annunciator Relay0Annunciator;
+        private Annunciator Relay1Annunciator;
+        private Annunciator Relay2Annunciator;
+        private Annunciator Relay3Annunciator;
+        private Annunciator Relay4Annunciator;
+        private Annunciator Relay5Annunciator;
+        private Annunciator Relay6Annunciator;
+        private Annunciator Relay7Annunciator;
     }
 }
 

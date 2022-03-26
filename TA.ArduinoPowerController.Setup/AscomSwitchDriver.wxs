@@ -16,6 +16,7 @@
       <ComponentGroupRef Id="cgPostSharp"/>
       <ComponentGroupRef Id="cgPostSharpAspects" />
       <ComponentGroupRef Id="cgAscomLocalServer" />
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
       <Component Id="cmpAscomSwitchDriver" 
                  Directory="INSTALLDIRECTORY" 
                  Guid="*" 

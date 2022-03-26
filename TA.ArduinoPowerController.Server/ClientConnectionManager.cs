@@ -5,16 +5,18 @@
 // 
 // File: ClientConnectionManager.cs  Last modified: 2017-03-16@23:33 by Tim Long
 
+using JetBrains.Annotations;
+using Ninject;
+using PostSharp.Patterns.Model;
+using PostSharp.Patterns.Threading;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
-using NLog;
-using PostSharp.Patterns.Model;
-using PostSharp.Patterns.Threading;
 using TA.ArduinoPowerController.DeviceInterface;
 using TA.Ascom.ReactiveCommunications;
 using TA.PostSharp.Aspects;
+using TA.Utils.Core;
+using TA.Utils.Core.Diagnostics;
 
 namespace TA.ArduinoPowerController.Server
     {
@@ -26,7 +28,7 @@ namespace TA.ArduinoPowerController.Server
     [NLogTraceWithArguments]
     public class ClientConnectionManager
         {
-        [Reference] private readonly ILogger log = LogManager.GetCurrentClassLogger();
+        [Reference] private readonly ILog log;
         private readonly bool performActionsOnOpen;
         [Reference] private Maybe<DeviceController> controllerInstance;
         [Reference] private ITransactionProcessorFactory factory;
@@ -38,8 +40,11 @@ namespace TA.ArduinoPowerController.Server
         ///     A factory class that can create and destroy transaction processors (and by implication,
         ///     the entire communications stack).
         /// </param>
-        public ClientConnectionManager(ITransactionProcessorFactory factory) : this(factory,
-            performActionsOnOpen: true) {}
+        public ClientConnectionManager(ITransactionProcessorFactory factory, ILog logService) : this(factory,
+            performActionsOnOpen: true)
+            {
+            this.log = logService;
+            }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ClientConnectionManager" /> class and allows
@@ -90,7 +95,7 @@ namespace TA.ArduinoPowerController.Server
             get { return factory; }
             set
                 {
-                log.Warn("Setting the TransactionProcessorFactory");
+                log.Warn().Message("Setting the TransactionProcessorFactory").Write();
                 if (OnlineClientCount > 0)
                     throw new InvalidOperationException(
                         "Cannot change or set the Transaction Processor Factory while there are connected clients");
@@ -115,8 +120,9 @@ namespace TA.ArduinoPowerController.Server
             {
             if (!controllerInstance.Any())
                 {
-                var controller = new DeviceController(factory);
-                controllerInstance = new Maybe<DeviceController>(controller);
+                CompositionRoot.BeginSessionScope();    // Starting a new session
+                var controller = CompositionRoot.Kernel.Get<DeviceController>();
+                controllerInstance = Maybe<DeviceController>.From(controller);
                 }
             var instance = controllerInstance.Single();
             if (!instance.IsOnline)
@@ -128,7 +134,7 @@ namespace TA.ArduinoPowerController.Server
         [Writer]
         public void GoOffline(Guid clientId)
             {
-            log.Info($"Go offline for client {clientId}");
+            log.Info().Message("Go offline for client {clientId}", clientId).Write();
             ClientStatus client = null;
             try
                 {
@@ -136,15 +142,16 @@ namespace TA.ArduinoPowerController.Server
                 }
             catch (InvalidOperationException e)
                 {
-                var message = $"Attempt to go offline by unecognized client {clientId}";
-                log.Error(e, message);
-                //ThrowOnUnrecognizedClient(clientId, e, message);
+                log.Error()
+                    .Exception(e)
+                    .Message("Attempt to go offline by unecognized client {clientId}", clientId)
+                    .Write();
                 }
             client.Online = false;
             RaiseClientStatusChanged();
             if (OnlineClientCount == 0)
                 {
-                log.Warn($"The last client has gone offline - closing connection");
+                log.Warn().Message("The last client has gone offline - closing connection").Write();
                 if (controllerInstance.Any())
                     {
                     controllerInstance.Single().Close();
@@ -167,7 +174,7 @@ namespace TA.ArduinoPowerController.Server
         [Writer]
         public DeviceController GoOnline(Guid clientId)
             {
-            log.Info($"Go online for client {clientId}");
+            log.Info().Message("Go online for client {clientId}", clientId).Write();
             ClientStatus client = null;
             try
                 {
@@ -175,8 +182,10 @@ namespace TA.ArduinoPowerController.Server
                 }
             catch (InvalidOperationException e)
                 {
-                var message = $"Attempt to go online with unregistered client {clientId}";
-                log.Error(e, message);
+                log.Error()
+                    .Exception(e)
+                    .Message("Attempt to go online with unregistered client {clientId}", clientId)
+                    .Write();
                 //ThrowOnUnrecognizedClient(clientId, e, message);
                 }
             try
@@ -185,7 +194,10 @@ namespace TA.ArduinoPowerController.Server
                 }
             catch (TransactionException trex)
                 {
-                log.Error(trex, $"NOT CONNECTED due to transaction exception: {trex.Transaction}");
+                log.Error()
+                    .Exception(trex)
+                    .Message("NOT CONNECTED due to transaction exception in {transaction}", trex.Transaction)
+                    .Write();
                 DestroyControllerInstance();
                 return null;
                 }
@@ -219,7 +231,7 @@ namespace TA.ArduinoPowerController.Server
         public Guid RegisterClient(string name = null)
             {
             var id = Guid.NewGuid();
-            var status = new ClientStatus {ClientId = id, Name = name ?? id.ToString(), Online = false};
+            var status = new ClientStatus { ClientId = id, Name = name ?? id.ToString(), Online = false };
             Clients.Add(status);
             RaiseClientStatusChanged();
             return id;
@@ -237,25 +249,29 @@ namespace TA.ArduinoPowerController.Server
             var ex = new ASCOM.InvalidOperationException($"Connection Manager: {message}", e);
             ex.Data["RegisteredClients"] = Clients;
             ex.Data["UnknownClient"] = clientId;
-            log.Error(ex, $"Client not found: {clientId}");
+            log.Error()
+                .Exception(ex).Message("Client not found: {clientId}", clientId)
+                .Property("registeredClients", Clients)
+                .Write();
             throw ex;
             }
 
         [Writer]
         public void UnregisterClient(Guid clientId)
             {
-            log.Info($"Unregistering client {clientId}");
+            log.Info().Message("Unregistering client {clientId}", clientId).Write();
             var previousClientCount = RegisteredClientCount;
             try
                 {
                 Clients.Remove(Clients.Single(p => p.Equals(clientId)));
                 RaiseClientStatusChanged();
                 }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
                 {
                 var message = $"Attempt to unregister unknown client {clientId}";
-                log.Error(e, message);
-                //ThrowOnUnrecognizedClient(clientId, e, "Attempt to unregister an unknown client");
+                log.Error()
+                    .Message("Attempt to unregister unknown client {clientId}", clientId)
+                    .Write();
                 }
             if (previousClientCount == 1 && RegisteredClientCount == 0)
                 {

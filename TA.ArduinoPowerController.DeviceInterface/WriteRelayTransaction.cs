@@ -9,12 +9,11 @@ using System;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Text.RegularExpressions;
-using NLog.Fluent;
 using TA.Ascom.ReactiveCommunications;
 using TA.Ascom.ReactiveCommunications.Diagnostics;
 
 namespace TA.ArduinoPowerController.DeviceInterface
-{
+    {
     /// <summary>
     ///     Class WriteRelayTransaction. A transaction type used to write a relay setting.
     ///     The transaction checks that the received response contains the expected relay number and value.
@@ -97,7 +96,7 @@ namespace TA.ArduinoPowerController.DeviceInterface
                 int relay = int.Parse(matches.Groups["Relay"].Value);
                 bool state = matches.Groups["Value"].Value == "1";
                 Value = new RelayCommand {Operation = operation, Relay = this.relay, State = state};
-                Log.Debug().Message("Successfully received RelayCommand {response}", Value).Write();
+                //Log.Debug().Message("Successfully received RelayCommand {response}", Value).Write();
             }
             base.OnCompleted(); //  This is critical - it marks the transaction as complete.
         }

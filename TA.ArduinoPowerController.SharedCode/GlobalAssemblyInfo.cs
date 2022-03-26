@@ -6,6 +6,7 @@
 // File: GlobalAssemblyInfo.cs  Last modified: 2017-04-07@17:48 by Tim Long
 
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Global assembly attributes shared by all projects in the solution.
@@ -33,3 +34,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("1.0.3")]
 [assembly: AssemblyInformationalVersion("1.0.3")]
 */
+
+// Make internals visible to the unit test assembly.
+[assembly:InternalsVisibleTo("TA.ArduinoPowerController.Test")]

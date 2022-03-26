@@ -13,7 +13,6 @@ namespace TA.ArduinoPowerController.Test.Common
     [Subject(typeof(Octet), "Initialization")]
     internal class when_an_octet_is_initialized_to_zero
     {
-        Establish context;
         Because of = () => zero = Octet.Zero;
 
         It should_have_all_bits_clear = () =>

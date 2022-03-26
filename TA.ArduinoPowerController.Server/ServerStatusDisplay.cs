@@ -12,11 +12,11 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using ASCOM.Controls;
 using NLog;
 using TA.ArduinoPowerController.DeviceInterface;
 using TA.ArduinoPowerController.Server.Properties;
 using TA.Ascom.ReactiveCommunications.Diagnostics;
+using TA.WinFormsControls;
 
 namespace TA.ArduinoPowerController.Server
     {

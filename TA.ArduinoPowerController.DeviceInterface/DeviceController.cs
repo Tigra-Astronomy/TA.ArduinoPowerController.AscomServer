@@ -6,22 +6,23 @@
 // File: DeviceController.cs  Last modified: 2019-09-08@08:36 by Tim Long
 
 using System;
-using NLog;
 using TA.Ascom.ReactiveCommunications;
+using TA.Utils.Core.Diagnostics;
 
 namespace TA.ArduinoPowerController.DeviceInterface
 {
     public class DeviceController : IDisposable
     {
         private readonly ITransactionProcessorFactory factory;
-        private readonly Logger log = LogManager.GetCurrentClassLogger();
+        private readonly ILog log;
 
         private bool disposed;
         private ITransactionProcessor transactionProcessor;
 
-        public DeviceController(ITransactionProcessorFactory factory)
+        public DeviceController(ITransactionProcessorFactory factory, ILog logService)
         {
             this.factory = factory;
+            log = logService;
         }
 
         public bool IsOnline => transactionProcessor != null && (factory?.Channel?.IsOpen ?? false);

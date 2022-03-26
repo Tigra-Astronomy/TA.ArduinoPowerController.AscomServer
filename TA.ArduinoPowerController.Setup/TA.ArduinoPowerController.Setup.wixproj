@@ -66,12 +66,17 @@
     <Compile Include="DeviceControlLayer.wxs" />
     <Compile Include="Directories.wxs" />
     <Compile Include="FeatureTree.wxs" />
+    <Compile Include="Ninject.wxs" />
     <Compile Include="NLog.wxs" />
     <Compile Include="PostSharp.wxs" />
     <Compile Include="PostSharpAspects.wxs" />
     <Compile Include="Product.wxs" />
     <Compile Include="ReactiveASCOM.wxs" />
     <Compile Include="ReactiveExtensions.wxs" />
+    <Compile Include="RuntimeSupport.wxs" />
+    <Compile Include="TaWinformsControls.wxs" />
+    <Compile Include="TaUtils.wxs" />
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config.wxi" />

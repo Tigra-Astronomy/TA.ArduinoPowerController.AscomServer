@@ -7,6 +7,7 @@
       <ComponentGroupRef Id="cgReactiveAscom" />
       <ComponentGroupRef Id="cgPostSharpAspects" />
       <ComponentGroupRef Id="cgNLog" />
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
       <Component Id="cmpDeviceControlLayer" Guid="*" Win64="no">
         <File Id="filDeviceLayerAssembly"
               Source="$(var.DeviceLayer.TargetPath)"

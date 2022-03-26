@@ -7,6 +7,10 @@
       <ComponentGroupRef Id="cgNLog"/>
       <ComponentGroupRef Id="cgDeviceLayer"/>
       <ComponentGroupRef Id="cgReactiveExtensions"/>
+      <ComponentGroupRef Id="cgNinject"/>
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
+      <ComponentGroupRef Id="cgTaUtils"/>
+      <ComponentGroupRef Id="cgTaWinformsControls"/>
       <Component Id="cmpAscomLocalServer" Guid="*" Win64="no">
         <File Id="filLocalServerAssembly"
               Source="$(var.Server.TargetPath)"

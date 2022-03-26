@@ -5,6 +5,7 @@
     <ComponentGroup Id="cgPostSharpAspects" Directory="INSTALLDIRECTORY">
       <ComponentGroupRef Id="cgPostSharp"/>
       <ComponentGroupRef Id="cgNLog" />
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
       <Component Id="cmpPostSharpAspects" Guid="*" Win64="no">
         <File Id="filPostSharpAspectsAssembly"
               Source="$(var.Aspects.TargetPath)"

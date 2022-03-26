@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgNinject" Directory="INSTALLDIRECTORY" >
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
+      <Component Id="cmpNinjectCore" Guid="*" Win64="no" >
+        <File Id="filNinjectCore"
+              Source="$(var.Server.TargetDir)Ninject.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
