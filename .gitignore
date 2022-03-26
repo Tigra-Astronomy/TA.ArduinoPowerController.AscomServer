@@ -6,6 +6,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.ncrunchsolution
+gitversion.json
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -244,4 +247,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-*.ncrunchsolution
