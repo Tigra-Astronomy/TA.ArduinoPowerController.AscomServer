@@ -76,7 +76,6 @@
     <Compile Include="RuntimeSupport.wxs" />
     <Compile Include="TaWinformsControls.wxs" />
     <Compile Include="TaUtils.wxs" />
-
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config.wxi" />

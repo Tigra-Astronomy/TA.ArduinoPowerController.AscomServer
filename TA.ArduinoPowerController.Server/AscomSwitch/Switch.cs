@@ -126,7 +126,7 @@ Licensed under the MIT License: http://tigra.mit-license.org/";
 
         public string GetSwitchDescription(short id) => $"Relay {id}";
 
-        public string GetSwitchName(short id) => Settings.Default.SwitchNames[id] ?? $"Relay {id}";
+        public string GetSwitchName(short id) => Settings.Default.SwitchNames?[id] ?? $"Relay {id}";
 
         /// <summary>
         ///     Returns the value for switch device id as a double

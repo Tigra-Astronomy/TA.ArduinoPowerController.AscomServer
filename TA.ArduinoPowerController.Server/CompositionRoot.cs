@@ -81,6 +81,7 @@ namespace TA.ArduinoPowerController.Server
             Bind<ChannelFactory>().ToSelf().InSessionScope();
             Bind<ServerStatusDisplay>().ToSelf().InSingletonScope();
             Bind<ITransactionProcessorFactory>().ToMethod(CreateTransactionProcessorFactory).InTransientScope();
+            Bind<ClientConnectionManager>().ToSelf().InSingletonScope();
             }
 
         private static ITransactionProcessorFactory CreateTransactionProcessorFactory(IContext _)

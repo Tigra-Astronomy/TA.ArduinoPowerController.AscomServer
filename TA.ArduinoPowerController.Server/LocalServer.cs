@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -20,6 +21,7 @@ using ASCOM.Utilities;
 using Microsoft.Win32;
 using NLog.Fluent;
 using TA.ArduinoPowerController.Common;
+using TA.ArduinoPowerController.Server.Properties;
 using TA.PostSharp.Aspects;
 
 namespace TA.ArduinoPowerController.Server
@@ -47,6 +49,8 @@ namespace TA.ArduinoPowerController.Server
             AppDomain.CurrentDomain.UnhandledException += UnhandledException;
             Log.Info().Message("===== Application Start =====").Write();
             LogVersionStrings();
+
+            AssureSwitchNamesAreValid();    // Avoid some tricky null reference exceptions
 
             var drivers = new DriverDiscovery();
             drivers.DiscoverServedClasses();
@@ -106,6 +110,34 @@ namespace TA.ArduinoPowerController.Server
                 AppDomain.CurrentDomain.UnhandledException -= UnhandledException;
             }
         }
+
+        private static void AssureSwitchNamesAreValid()
+            {
+            if (Settings.Default.SwitchNames is null)
+                {
+                Log.Warn()
+                    .Message("No switch names found. Setting default names for {count} switches.", Settings.Default.NumberOfSwitches)
+                    .Write();
+                var names = new StringCollection();
+                for (int i = 0; i < Settings.Default.NumberOfSwitches; i++)
+                    names.Add($"Switch {i}");
+                Settings.Default.SwitchNames = names;
+                Settings.Default.Save();
+                }
+            var nameCount = Settings.Default.SwitchNames.Count;
+            var switchCount = Settings.Default.NumberOfSwitches;
+            if ( nameCount < switchCount)
+                {
+                Log.Warn()
+                    .Message("{nameCount} names found for {switchCount} switches. Setting additional default names.",
+                    nameCount, switchCount)
+                    .Write();
+                for (int i = nameCount; i < switchCount; i++)
+                    Settings.Default.SwitchNames.Add($"Switch {i}");
+                Settings.Default.Save();
+                }
+            // We don't worry about extra names as those are ignored.
+            }
 
         #endregion
 
