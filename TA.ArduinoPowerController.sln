@@ -22,6 +22,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TA.ArduinoPowerController.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.ArduinoPowerController.Test", "TA.ArduinoPowerController.Test\TA.ArduinoPowerController.Test.csproj", "{4C2BA771-DA96-4922-AC98-E68F202B9B47}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{B767F022-7A39-4D9C-AC2B-ADE7D378FA68}"
+	ProjectSection(SolutionItems) = preProject
+		images\hardware.png = images\hardware.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{3015f05f-d747-4c3e-a0d4-ec2b3bd76c56}*SharedItemsImports = 4

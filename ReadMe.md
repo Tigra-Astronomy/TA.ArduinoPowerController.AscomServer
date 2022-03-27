@@ -88,8 +88,8 @@ Software development is powered by coffee! If you've found this driver useful, o
 August 2016, Tim Long <Tim@tigra-astronomy.com>
 
 [coffee]: http://tigra-astronomy.com/#coffee "Buy me a cup of coffee"
-[download]: https://bitbucket.org/tigra-astronomy/ta.arduinopowercontroller-ascom-switch-driver/downloads/ "Download the installer"
-[image]: http://tigra-astronomy.com/Media/TigraAstronomy/site-images/arduino-power-controller/hardware.png "Arduino Power Controller"
+[download]: https://github.com/Tigra-Astronomy/TA.ArduinoPowerController.AscomServer/releases/latest "Download the installer"
+[image]: images/hardware.png "Arduino Power Controller"
 [license]: https://tigra.mit-license.org/ "Tigra Astronomy Open Source License"
 [nlog]: https://github.com/nlog/nlog/wiki/Configuration-file#targets "NLog Targets"
 [project]: http://tigra-astronomy.com/oss/arduino-power-controller "Project Home Page at Tigra Astronomy"
