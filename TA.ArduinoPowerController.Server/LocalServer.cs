@@ -20,9 +20,9 @@ using ASCOM;
 using ASCOM.Utilities;
 using Microsoft.Win32;
 using NLog.Fluent;
-using TA.ArduinoPowerController.Common;
 using TA.ArduinoPowerController.Server.Properties;
 using TA.PostSharp.Aspects;
+using TA.Utils.Core;
 
 namespace TA.ArduinoPowerController.Server
 {
@@ -143,11 +143,11 @@ namespace TA.ArduinoPowerController.Server
 
         private static void LogVersionStrings()
         {
-            Log.Info().Message("Semantic version: {semVer}", GitVersionExtensions.GitSemVer).Write();
-            Log.Debug().Message("Informational Version: {informationalVersion}", GitVersionExtensions.GitInformationalVersion).Write();
-            Log.Debug().Message("Git Commit ID: {fullCommit}", GitVersionExtensions.GitCommitSha).Write();
-            Log.Debug().Message("Git Short ID: {shortCommit}", GitVersionExtensions.GitCommitShortSha).Write();
-            Log.Debug().Message("Commit Date: {commitDate}", GitVersionExtensions.GitCommitDate).Write();
+            Log.Info().Message("Semantic version: {semVer}", GitVersion.GitSemVer).Write();
+            Log.Debug().Message("Informational Version: {informationalVersion}", GitVersion.GitInformationalVersion).Write();
+            Log.Debug().Message("Git Commit ID: {fullCommit}", GitVersion.GitCommitSha).Write();
+            Log.Debug().Message("Git Short ID: {shortCommit}", GitVersion.GitCommitShortSha).Write();
+            Log.Debug().Message("Commit Date: {commitDate}", GitVersion.GitCommitDate).Write();
         }
 
 

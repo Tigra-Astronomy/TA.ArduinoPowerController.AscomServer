@@ -3,6 +3,7 @@
   <Fragment>
     <DirectoryRef Id="INSTALLDIRECTORY"/>
     <ComponentGroup Id="cgRuntimeSupport" Directory="INSTALLDIRECTORY" >
+      <ComponentGroupRef Id="cgJetBrains"/>
       <Component Id="cmpSystemIoPorts" Guid="*" Win64="no" >
         <File Id="filSystemIoPorts"
               Source="$(var.Server.TargetDir)System.IO.Ports.dll"

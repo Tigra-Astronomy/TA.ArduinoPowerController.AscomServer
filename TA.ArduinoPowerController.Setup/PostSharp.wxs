@@ -10,9 +10,15 @@
               KeyPath="yes" />
       </Component>
       <Component Id="cmpPostSharpPatternsCommon" Guid="*" Win64="no">
-        <File Id="filPostSharpPatternsCommon"     
-              Source="$(var.Server.TargetDir)PostSharp.Patterns.Common.dll"                         
-              Vital="yes" 
+        <File Id="filPostSharpPatternsCommon"
+              Source="$(var.Server.TargetDir)PostSharp.Patterns.Common.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="cmpPostSharpPatternsAggregation" Guid="*" Win64="no">
+        <File Id="filPostSharpPatternsAggregation"
+              Source="$(var.Server.TargetDir)PostSharp.Patterns.Aggregation.dll"
+              Vital="yes"
               KeyPath="yes" />
       </Component>
       <Component Id="cmpPostSharpPatternsThreading"  Guid="*" Win64="no">

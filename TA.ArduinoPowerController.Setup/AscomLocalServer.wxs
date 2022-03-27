@@ -27,6 +27,7 @@
             <RegistryValue Value="$(var.InstallName)" Type="string"/>
             <RegistryValue Name="AppID" Value="$(var.LocalServerAppId)" Type="string"/>
             <RegistryValue Name="AuthenticationLevel" Value="1" Type="integer"/>
+            <RegistryValue Name="RunAs" Value="Interactive User" Type="string" />
           </RegistryKey>
           <!-- HKCR\AppID\{exe-name} -->
           <RegistryKey Key="$(var.Server.TargetFileName)">

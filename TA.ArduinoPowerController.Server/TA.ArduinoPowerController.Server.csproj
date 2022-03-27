@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TA.ArduinoPowerController.Server</RootNamespace>
     <AssemblyName>TA.ArduinoPowerController.Server</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -189,10 +189,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TA.ArduinoPowerController.Common\TA.ArduinoPowerController.Common.csproj">
-      <Project>{09cbcbdc-0944-492f-b460-f289bbf06f82}</Project>
-      <Name>TA.ArduinoPowerController.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TA.ArduinoPowerController.DeviceInterface\TA.ArduinoPowerController.DeviceInterface.csproj">
       <Project>{3015f05f-d747-4c3e-a0d4-ec2b3bd76c56}</Project>
       <Name>TA.ArduinoPowerController.DeviceInterface</Name>

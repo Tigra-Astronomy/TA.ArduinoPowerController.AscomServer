@@ -6,7 +6,7 @@
 // File: OctetTests.cs  Last modified: 2019-09-08@19:01 by Tim Long
 
 using Machine.Specifications;
-using TA.ArduinoPowerController.Common;
+using TA.Utils.Core;
 
 namespace TA.ArduinoPowerController.Test.Common
 {

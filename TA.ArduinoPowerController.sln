@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29209.152
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.ArduinoPowerController.DeviceInterface", "TA.ArduinoPowerController.DeviceInterface\TA.ArduinoPowerController.DeviceInterface.csproj", "{3015F05F-D747-4C3E-A0D4-EC2B3BD76C56}"
 EndProject
@@ -20,13 +20,10 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "TA.ArduinoPowerController.S
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TA.ArduinoPowerController.SharedCode", "TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.shproj", "{6778254B-A2CD-4364-BF2B-249B59285136}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.ArduinoPowerController.Common", "TA.ArduinoPowerController.Common\TA.ArduinoPowerController.Common.csproj", "{09CBCBDC-0944-492F-B460-F289BBF06F82}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TA.ArduinoPowerController.Test", "TA.ArduinoPowerController.Test\TA.ArduinoPowerController.Test.csproj", "{4C2BA771-DA96-4922-AC98-E68F202B9B47}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{09cbcbdc-0944-492f-b460-f289bbf06f82}*SharedItemsImports = 4
 		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{3015f05f-d747-4c3e-a0d4-ec2b3bd76c56}*SharedItemsImports = 4
 		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{3689a2cb-94c5-4012-a5cf-7e7d1dd27143}*SharedItemsImports = 4
 		TA.ArduinoPowerController.SharedCode\TA.ArduinoPowerController.SharedCode.projitems*{6778254b-a2cd-4364-bf2b-249b59285136}*SharedItemsImports = 13
@@ -85,18 +82,6 @@ Global
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Release|x64.Build.0 = Release|x64
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Release|x86.ActiveCfg = Release|x86
 		{B847A048-C924-4134-BD60-C111B0D37C8B}.Release|x86.Build.0 = Release|x86
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Debug|x64.Build.0 = Debug|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Debug|x86.Build.0 = Debug|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|x64.ActiveCfg = Release|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|x64.Build.0 = Release|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|x86.ActiveCfg = Release|Any CPU
-		{09CBCBDC-0944-492F-B460-F289BBF06F82}.Release|x86.Build.0 = Release|Any CPU
 		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C2BA771-DA96-4922-AC98-E68F202B9B47}.Debug|x64.ActiveCfg = Debug|Any CPU
