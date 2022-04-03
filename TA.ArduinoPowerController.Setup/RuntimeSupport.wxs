@@ -28,12 +28,12 @@
               Vital="yes"
               KeyPath="yes" />
       </Component>
-      <Component Id="cmpSystemValueTuple" Guid="*" Win64="no" >
+      <!--<Component Id="cmpSystemValueTuple" Guid="*" Win64="no" >
         <File Id="filSystemValueTuple"
               Source="$(var.Server.TargetDir)System.ValueTuple.dll"
               Vital="yes"
               KeyPath="yes" />
-      </Component>
+      </Component>-->
     </ComponentGroup>
   </Fragment>
 </Wix>
