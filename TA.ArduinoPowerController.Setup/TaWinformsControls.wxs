@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgTaWinformsControls" Directory="INSTALLDIRECTORY">
+      <Component Id="cmpTaWinformsControls" Guid="*" Win64="no">
+        <File Id="filTaWinformsControls"
+              Source="$(var.Server.TargetDir)TA.WinForms.Controls.dll"
+              KeyPath="yes"
+              Vital="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

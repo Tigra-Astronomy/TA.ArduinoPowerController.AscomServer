@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgRuntimeSupport" Directory="INSTALLDIRECTORY" >
+      <ComponentGroupRef Id="cgJetBrains"/>
+      <Component Id="cmpSystemIoPorts" Guid="*" Win64="no" >
+        <File Id="filSystemIoPorts"
+              Source="$(var.Server.TargetDir)System.IO.Ports.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="cmpSystemRuntimeCompilerServicesUnsafe" Guid="*" Win64="no" >
+        <File Id="filSystemRuntimeCompilerServicesUnsafe"
+              Source="$(var.Server.TargetDir)System.Runtime.CompilerServices.Unsafe.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="cmpSystemTextEncodingCodePages" Guid="*" Win64="no" >
+        <File Id="filSystemTextEncodingCodePages"
+              Source="$(var.Server.TargetDir)System.Text.Encoding.CodePages.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>
+      <Component Id="cmpSystemThreadingTasksExtensions" Guid="*" Win64="no" >
+        <File Id="filSystemThreadingTasksExtensions"
+              Source="$(var.Server.TargetDir)System.Threading.Tasks.Extensions.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>
+      <!--<Component Id="cmpSystemValueTuple" Guid="*" Win64="no" >
+        <File Id="filSystemValueTuple"
+              Source="$(var.Server.TargetDir)System.ValueTuple.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>-->
+    </ComponentGroup>
+  </Fragment>
+</Wix>

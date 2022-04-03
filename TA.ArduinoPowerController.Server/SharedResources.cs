@@ -7,9 +7,11 @@
 
 using System;
 using System.Windows.Forms;
+using Ninject;
 using NLog;
 using TA.ArduinoPowerController.DeviceInterface;
 using TA.ArduinoPowerController.Server.Properties;
+using TA.Utils.Core.Diagnostics;
 
 namespace TA.ArduinoPowerController.Server
     {
@@ -33,58 +35,47 @@ namespace TA.ArduinoPowerController.Server
         /// </summary>
         public const string SwitchDriverName = "Arduino Power Controller";
 
-        private static readonly ILogger Log;
+        private static readonly ILog Log = CompositionRoot.Kernel.Get<ILog>();
 
         static SharedResources()
             {
-            Log = LogManager.GetCurrentClassLogger();
-            ConnectionManager = CreateConnectionManager();
             }
 
         /// <summary>
         ///     Gets the connection manager.
         /// </summary>
         /// <value>The connection manager.</value>
-        public static ClientConnectionManager ConnectionManager { get; }
+        public static ClientConnectionManager ConnectionManager => CompositionRoot.Kernel.Get<ClientConnectionManager>();
 
-        private static ClientConnectionManager CreateConnectionManager()
-            {
-            Log.Info("Creating ClientConnectionManager");
-            return new ClientConnectionManager(
-                CreateTransactionProcessorFactory());
-            }
 
-        private static ITransactionProcessorFactory CreateTransactionProcessorFactory()
-            {
-            Log.Warn(
-                $"Creating transaction processor factory with connection string {Settings.Default.ConnectionString}");
-            return new ReactiveTransactionProcessorFactory(Settings.Default.ConnectionString ?? "(not set)");
-            }
 
         public static void DoSetupDialog(Guid clientId)
             {
             var oldConnectionString = Settings.Default.ConnectionString;
-            Log.Info($"SetupDialog requested by client {clientId}");
+            Log.Info().Message("SetupDialog requested by client {clientId}", clientId).Write();
             using (var dialogForm = new SetupDialogForm())
                 {
                 var result = dialogForm.ShowDialog();
                 switch (result)
                     {
-                        case DialogResult.OK:
-                            Log.Info($"SetupDialog successful, saving settings");
-                            Settings.Default.Save();
-                            var newConnectionString = Settings.Default.ConnectionString;
-                            if (oldConnectionString != newConnectionString)
-                                {
-                                Log.Warn(
-                                    $"Connection string has changed from {oldConnectionString} to {newConnectionString} - replacing the TansactionProcessorFactory");
-                                ConnectionManager.TransactionProcessorFactory = CreateTransactionProcessorFactory();
-                                }
-                            break;
-                        default:
-                            Log.Warn("SetupDialog cancelled or failed - reverting to previous settings");
-                            Settings.Default.Reload();
-                            break;
+                    case DialogResult.OK:
+                        Log.Info().Message("SetupDialog successful, saving settings").Write();
+                        Settings.Default.Save();
+                        var newConnectionString = Settings.Default.ConnectionString;
+                        if (oldConnectionString != newConnectionString)
+                            {
+                            Log.Warn().Message(
+                                "Connection string has changed from {old} to {new} - replacing the TansactionProcessorFactory")
+                            .Property("old", oldConnectionString)
+                            .Property("new", newConnectionString)
+                            .Write();
+                            ConnectionManager.TransactionProcessorFactory = CompositionRoot.Kernel.Get<ITransactionProcessorFactory>();
+                            }
+                        break;
+                    default:
+                        Log.Warn().Message("SetupDialog cancelled or failed - reverting to previous settings").Write();
+                        Settings.Default.Reload();
+                        break;
                     }
                 }
             }

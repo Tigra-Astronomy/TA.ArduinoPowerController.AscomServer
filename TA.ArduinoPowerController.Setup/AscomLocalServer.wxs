@@ -7,6 +7,10 @@
       <ComponentGroupRef Id="cgNLog"/>
       <ComponentGroupRef Id="cgDeviceLayer"/>
       <ComponentGroupRef Id="cgReactiveExtensions"/>
+      <ComponentGroupRef Id="cgNinject"/>
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
+      <ComponentGroupRef Id="cgTaUtils"/>
+      <ComponentGroupRef Id="cgTaWinformsControls"/>
       <Component Id="cmpAscomLocalServer" Guid="*" Win64="no">
         <File Id="filLocalServerAssembly"
               Source="$(var.Server.TargetPath)"
@@ -23,6 +27,7 @@
             <RegistryValue Value="$(var.InstallName)" Type="string"/>
             <RegistryValue Name="AppID" Value="$(var.LocalServerAppId)" Type="string"/>
             <RegistryValue Name="AuthenticationLevel" Value="1" Type="integer"/>
+            <RegistryValue Name="RunAs" Value="Interactive User" Type="string" />
           </RegistryKey>
           <!-- HKCR\AppID\{exe-name} -->
           <RegistryKey Key="$(var.Server.TargetFileName)">

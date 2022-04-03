@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIRECTORY"/>
+    <ComponentGroup Id="cgJetBrains" Directory="INSTALLDIRECTORY" >
+      <Component Id="cmpJetBrainsAnnotations" Guid="*" Win64="no" >
+        <File Id="filJetBrainsAnnotations"
+              Source="$(var.Server.TargetDir)JetBrains.Annotations.dll"
+              Vital="yes"
+              KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

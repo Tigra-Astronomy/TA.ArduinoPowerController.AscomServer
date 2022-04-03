@@ -16,16 +16,11 @@
       <ComponentGroupRef Id="cgPostSharp"/>
       <ComponentGroupRef Id="cgPostSharpAspects" />
       <ComponentGroupRef Id="cgAscomLocalServer" />
+      <ComponentGroupRef Id="cgRuntimeSupport"/>
       <Component Id="cmpAscomSwitchDriver" 
                  Directory="INSTALLDIRECTORY" 
                  Guid="*" 
                  Win64="no">
-        <File Id="filSwitchDriverAssembly" 
-              Source="$(var.SwitchDriver.TargetPath)" 
-              KeyPath="yes"
-              Vital="yes" 
-              Assembly=".net"
-              AssemblyApplication="filSwitchDriverAssembly" />
         <!-- Registry entries suitable for a LocalServer served class -->
         <!-- HKCR\CLSID\{driver-guid} -->
         <RegistryKey Root="HKCR" Key="CLSID">
